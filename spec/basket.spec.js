@@ -233,13 +233,6 @@ describe("Basket", () => {
     basket.addToBasket("BGLO");
     basket.addToBasket("BGLO");
 
-    basket.checkPrice("BGLO");
-    basket.checkPrice("BGLO");
-    basket.checkPrice("BGLO");
-    basket.checkPrice("BGLO");
-    basket.checkPrice("BGLO");
-    basket.checkPrice("BGLO");
-
     // basket.addToBasket("BGLP");
     // basket.addToBasket("BGLE");
     // basket.addToBasket("BGLS");

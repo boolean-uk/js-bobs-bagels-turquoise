@@ -47,12 +47,12 @@ class Basket {
       totalPrice += this.priceArray[i];
     }
     // console.log(`inside totalBasketPrice price array:${this.priceArray}`);
-    console.log(`total price before: ${totalPrice}`);
-    console.log("inside total price before:", this.discountedPrice());
+    console.log(`total price before:`, totalPrice);
+    console.log("inside total price discounted price:", this.discountedPrice());
     // console.log(`total price after: ${totalPrice}`);
     // console.log("inside total price after:", this.discountedPrice());
 
-    return totalPrice + this.discountedPrice();
+    return Number((totalPrice + this.discountedPrice()).toFixed(3));
   }
 
   discountedPrice() {
@@ -70,23 +70,23 @@ class Basket {
     let totalDiscount = 0;
     const skus = Object.keys(count);
     // skus = ["BGLO"]
-    // console.log("inside discountrPrice skus:", skus);
+    console.log("inside discountrPrice skus length:", skus.length);
+
     for (let i = 0; i < skus.length; i++) {
+      console.log("how many times it is looping: ");
       const skuNum = count[skus[i]];
       const item = this.getItem(skus[i]);
 
-      console.log("check skuNum", skuNum);
+      console.log("check skuNum 79", skuNum);
       //   console.log("check item", item);
 
       console.log("logging item discount: ", item.discount);
-      if (item.discount) {
+      if (item.discount && skuNum >= item.discountTrigger) {
         console.log("inside for loop: ", item.discountTrigger);
-
-        if (skuNum >= item.discountTrigger) {
-          totalDiscount +=
-            item.saving * Math.floor(skuNum / item.discountTrigger);
-        }
+        console.log("sku num in 86", skuNum);
+        totalDiscount = item.saving * Math.floor(skuNum / item.discountTrigger);
       }
+      return totalDiscount;
     }
     return totalDiscount;
   }

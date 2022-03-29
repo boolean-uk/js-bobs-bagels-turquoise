@@ -100,6 +100,6 @@ Verb: see, add more than once, before adding to basket
 
 | Methods            | Output                    |
 | ------------------ | ------------------------- |
-| countQuantity()    | Object {sku: @Number}     |
+| printReceipt()     |                           |
 | discountedAmount() | discounted amount @Number |
 | finalPrice()       | final price @Number       |

@@ -83,3 +83,15 @@ Verb: see, add more than once, before adding to basket
 | ------------------ | ------------------- |
 | checkPrice(@sku)   | price @Number       |
 | totalBasketPrice() | total price @Number |
+
+## Extension 1
+
+| Methods            | Output                    |
+| ------------------ | ------------------------- |
+| countQuantity()    | Object {sku: @Number}     |
+| discountedAmount() | discounted amount @Number |
+| finalPrice()       | final price @Number       |
+
+- countQuantity() will iterate through basketArray, and create a object {sku: @Number}
+- discountedAmount() will return the price that is going to be discounted
+  -finalPrice(): subtracts discountedAmount from totalBasketPrice

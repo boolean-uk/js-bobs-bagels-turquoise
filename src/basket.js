@@ -60,7 +60,7 @@ class Basket {
     return +totalPrice.toFixed(2);
   }
 
-  discountedPrice() {
+  discountedAmount() {
     let accumulatedCost = 0;
 
     for (let property in this.countQuantity()) {
@@ -87,7 +87,7 @@ class Basket {
   }
 
   finalPrice() {
-    return +(+this.totalBasketPrice() + this.discountedPrice()).toFixed(2);
+    return +(+this.totalBasketPrice() + this.discountedAmount()).toFixed(2);
   }
 }
 

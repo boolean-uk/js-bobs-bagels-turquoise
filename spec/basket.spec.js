@@ -256,9 +256,9 @@ describe("Basket", () => {
     basket.addToBasket("BGLO");
     basket.addToBasket("BGLO");
 
-    const result = basket.discountedPrice();
+    const result = basket.discountedAmount();
 
-    // { BGLO: 7, BGLP: 1, BGLE: 1, BGLS: 1, COF: 1, BGSE: 1 }.discountedPrice()
+    // { BGLO: 7, BGLP: 1, BGLE: 1, BGLS: 1, COF: 1, BGSE: 1 }.discountedAmount()
 
     console.log("line 262............................", result);
     // verify
@@ -279,7 +279,7 @@ describe("Basket", () => {
 
     const result = basket.finalPrice();
 
-    // { BGLO: 7, BGLP: 1, BGLE: 1, BGLS: 1, COF: 1, BGSE: 1 }.discountedPrice()
+    // { BGLO: 7, BGLP: 1, BGLE: 1, BGLS: 1, COF: 1, BGSE: 1 }.discountedAmount()
 
     console.log("line 262............................", result);
     // verify
@@ -318,9 +318,9 @@ describe("Basket", () => {
     basket.addToBasket("BGLP");
     basket.addToBasket("BGLP");
 
-    const result = basket.discountedPrice();
+    const result = basket.discountedAmount();
 
-    // { BGLO: 7, BGLP: 1, BGLE: 1, BGLS: 1, COF: 1, BGSE: 1 }.discountedPrice()
+    // { BGLO: 7, BGLP: 1, BGLE: 1, BGLS: 1, COF: 1, BGSE: 1 }.discountedAmount()
 
     console.log("line 262............................", result);
     // verify
@@ -361,7 +361,7 @@ describe("Basket", () => {
 
     const result = basket.totalBasketPrice();
 
-    // { BGLO: 7, BGLP: 1, BGLE: 1, BGLS: 1, COF: 1, BGSE: 1 }.discountedPrice()
+    // { BGLO: 7, BGLP: 1, BGLE: 1, BGLS: 1, COF: 1, BGSE: 1 }.discountedAmount()
 
     console.log("line 262............................", result);
     // verify
@@ -402,7 +402,7 @@ describe("Basket", () => {
 
     const result = basket.finalPrice();
 
-    // { BGLO: 7, BGLP: 1, BGLE: 1, BGLS: 1, COF: 1, BGSE: 1 }.discountedPrice()
+    // { BGLO: 7, BGLP: 1, BGLE: 1, BGLS: 1, COF: 1, BGSE: 1 }.discountedAmount()
 
     console.log("line 451............................", result);
     // verify

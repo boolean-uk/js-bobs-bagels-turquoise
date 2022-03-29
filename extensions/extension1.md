@@ -1,4 +1,4 @@
-## Extension 1
+and extensuion 1 complete## Extension 1
 
 In a normal supermarket, things are identified using Stock Keeping Units, or SKUs.
 
@@ -7,14 +7,16 @@ In Bob's Bagels, we'll use the first 3 letters of the product with an extra lett
 Our goods are priced individually. In addition, some items are multi-priced: buy n of them, and they'll cost you y pounds.
 
 #### Bob's Bagels Inventory
-|  SKU   |  Name  |  Variant   | Price | Special offers
-|--------|--------|------------|-------|----
-|  BGLO  | Bagel  | Onion      |  .49  | 6 for 2.49     
-|  BGLP  | Bagel  | Plain      |  .39  | 12 for 3.99
-|  BGLE  | Bagel  | Everything |  .49  | 6 for 2.49
-|  COF   | Coffee |            |  .99  | Coffee & Plain Bagel for 1.25             
+
+| SKU  | Name   | Variant    | Price | Special offers                |
+| ---- | ------ | ---------- | ----- | ----------------------------- |
+| BGLO | Bagel  | Onion      | .49   | 6 for 2.49                    |
+| BGLP | Bagel  | Plain      | .39   | 12 for 3.99                   |
+| BGLE | Bagel  | Everything | .49   | 6 for 2.49                    |
+| COF  | Coffee |            | .99   | Coffee & Plain Bagel for 1.25 |
 
 #### Example orders
+
 ```
 2x BGLO  = 0.98
 12x BGLP = 3.99

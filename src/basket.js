@@ -5,6 +5,11 @@ class Basket {
     this.basketArray = [];
     this.basketSize = 20;
   }
+
+  increaseBasketSize(amount) {
+    this.basketSize = amount;
+  }
+
   addToBasket(sku) {
     for (let i = 0; i < menu.length; i++) {
       if (menu[i].sku === sku && this.basketArray.length < this.basketSize) {
@@ -23,67 +28,26 @@ class Basket {
     return "That item isn't in your basket";
   }
 
-  checkPrice(sku) {
-    let itemPrice = 0;
-    for (let i = 0; i < menu.length; i++) {
-      if (menu[i].sku === sku) {
-        itemPrice = menu[i].price;
-      }
-    }
-    return itemPrice;
-  }
+  //   receipt() {
+  //     return ```
+  //     ~~~ Bob's Bagels ~~~
 
-  countQuantity() {
-    const skuArray = [];
-    for (let i = 0; i < this.basketArray.length; i++) {
-      skuArray.push(this.basketArray[i].sku);
-    }
-    let count = skuArray.reduce((tally, sku) => {
-      tally[sku] = (tally[sku] || 0) + 1;
-      return tally;
-    }, {});
+  //     2021-03-16 21:38:44
 
-    return count;
-  }
+  // ----------------------------
 
-  totalBasketPrice() {
-    let totalPrice = +0;
-    for (let i = 0; i < this.basketArray.length; i++) {
-      totalPrice += this.checkPrice(this.basketArray[i]["sku"]);
-    }
+  // Onion Bagel        2   £0.98
+  // Plain Bagel        12  £3.99
+  // Everything Bagel   6   £2.49
+  // Coffee             3   £2.97
 
-    return +totalPrice.toFixed(2);
-  }
+  // ----------------------------
+  // Total                 £10.43
 
-  discountedPrice() {
-    let accumulatedCost = 0;
-
-    for (let property in this.countQuantity()) {
-      const quantitySku = this.countQuantity()[property];
-      console.log(property);
-      switch (true) {
-        case property === "BGLP" && quantitySku >= 12:
-          accumulatedCost +=
-            Math.floor(this.countQuantity()[property] / 12) * -0.69;
-          break;
-        case property === "BGLO" && quantitySku >= 6:
-          accumulatedCost +=
-            Math.floor(this.countQuantity()[property] / 6) * -0.45;
-          break;
-
-        case property === "BGLE" && quantitySku >= 6:
-          accumulatedCost +=
-            Math.floor(this.countQuantity()[property] / 6) * -0.45;
-          break;
-      }
-    }
-
-    return +accumulatedCost.toFixed(2);
-  }
-
-  finalPrice() {
-    return +(+this.totalBasketPrice() + this.discountedPrice()).toFixed(2);
-  }
+  //         Thank you
+  //       for your order!
+  // ```;
+  //   }
 }
 
 module.exports = Basket;

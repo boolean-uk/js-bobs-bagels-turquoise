@@ -1,4 +1,4 @@
-const inventory = [
+const menu = [
   {
     sku: "BGLO",
     price: 0.49,
@@ -52,4 +52,4 @@ const inventory = [
   }
 ];
 
-module.exports = inventory;
+module.exports = menu;

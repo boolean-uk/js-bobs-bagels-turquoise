@@ -161,7 +161,7 @@ describe("Basket", () => {
       },
     ];
     // execute
-    basket.basketSize = 6;
+    basket.increaseBasketSize(6);
     basket.addToBasket("BGLO");
     basket.addToBasket("BGLP");
     basket.addToBasket("BGLE");
@@ -200,7 +200,7 @@ describe("Basket", () => {
     const expected = 5.84;
     // execute
     // basket.this.basketSize = 4
-    basket.basketSize = 6;
+    basket.increaseBasketSize(6);
     basket.addToBasket("BGLO");
     basket.addToBasket("BGLP");
     basket.addToBasket("BGLE");
@@ -217,7 +217,7 @@ describe("Basket", () => {
     // set up
     const expected = 2.94;
     // execute
-    basket.basketSize = 50;
+    basket.increaseBasketSize(50);
     basket.addToBasket("BGLO");
     basket.addToBasket("BGLO");
     basket.addToBasket("BGLO");
@@ -234,7 +234,7 @@ describe("Basket", () => {
     // set up
     const expected = -1.35;
     // execute
-    basket.basketSize = 50;
+    basket.increaseBasketSize(50);
     basket.addToBasket("BGLO");
     basket.addToBasket("BGLO");
     basket.addToBasket("BGLO");
@@ -269,7 +269,7 @@ describe("Basket", () => {
     // set up
     const expected = 2.49;
     // execute
-    basket.basketSize = 50;
+    basket.increaseBasketSize(50);
     basket.addToBasket("BGLO");
     basket.addToBasket("BGLO");
     basket.addToBasket("BGLO");
@@ -290,7 +290,7 @@ describe("Basket", () => {
     // set up
     const expected = -1.59;
     // execute
-    basket.basketSize = 50;
+    basket.increaseBasketSize(50);
     basket.addToBasket("BGLO");
     basket.addToBasket("BGLO");
     basket.addToBasket("BGLO");
@@ -331,7 +331,7 @@ describe("Basket", () => {
     // set up
     const expected = 10.56;
     // execute
-    basket.basketSize = 50;
+    basket.increaseBasketSize(50);
     basket.addToBasket("BGLO");
     basket.addToBasket("BGLO");
     basket.addToBasket("BGLO");
@@ -372,7 +372,7 @@ describe("Basket", () => {
     // set up
     const expected = 8.97;
     // execute
-    basket.basketSize = 50;
+    basket.increaseBasketSize(50);
     basket.addToBasket("BGLO");
     basket.addToBasket("BGLO");
     basket.addToBasket("BGLO");

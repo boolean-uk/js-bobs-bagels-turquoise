@@ -5,6 +5,7 @@ class Basket {
     this.basketArray = [];
     this.basketSize = 20;
   }
+
   addToBasket(sku) {
     for (let i = 0; i < menu.length; i++) {
       if (menu[i].sku === sku && this.basketArray.length < this.basketSize) {
@@ -21,6 +22,10 @@ class Basket {
       }
     }
     return "That item isn't in your basket";
+  }
+
+  increaseBasketSize(size) {
+    this.basketSize = size;
   }
 
   checkPrice(sku) {

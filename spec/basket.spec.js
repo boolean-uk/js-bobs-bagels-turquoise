@@ -123,8 +123,7 @@ describe("Basket", () => {
         name: "Bagel",
         variant: "Onion",
         discount: "6 for 2.49",
-        saving: -0.45,
-        discountTrigger: 6
+        saving: -0.45
       },
       {
         sku: "BGLP",
@@ -140,7 +139,7 @@ describe("Basket", () => {
         name: "Bagel",
         variant: "Everything",
         discount: "6 for 2.49",
-        saving: -0.49
+        saving: -0.45
       },
       {
         sku: "BGLS",
@@ -190,8 +189,8 @@ describe("Basket", () => {
     const expected = 2.99;
     // execute
     // basket.this.basketSize = 4
-    basket.checkPrice("BGSE");
-    const result = basket.priceArray;
+
+    const result = basket.checkPrice("BGSE");
     // verify
     expect(result).toEqual(expected);
   });
@@ -208,20 +207,15 @@ describe("Basket", () => {
     basket.addToBasket("BGLS");
     basket.addToBasket("COF");
     basket.addToBasket("BGSE");
-    // basket.checkPrice("BGLO");
-    // basket.checkPrice("BGLP");
-    // basket.checkPrice("BGLE");
-    // basket.checkPrice("BGLS");
-    // basket.checkPrice("COF");
-    // basket.checkPrice("BGSE");
+
     const result = basket.totalBasketPrice();
     // verify
     expect(result).toEqual(expected);
   });
 
-  it("Returns", () => {
+  it("total basket price before discount", () => {
     // set up
-    const expected = 2.49;
+    const expected = 2.94;
     // execute
     basket.basketSize = 50;
     basket.addToBasket("BGLO");
@@ -236,43 +230,7 @@ describe("Basket", () => {
     expect(result).toEqual(expected);
   });
 
-  // fit("returns object of sku:quantity", () => {
-  //   // set up
-  //   const expected = { BGLO: 7, BGLP: 1, BGLE: 1, BGLS: 1, COF: 1, BGSE: 1 };
-  //   // execute
-  //   basket.basketSize = 50;
-  //   basket.addToBasket("BGLO");
-  //   basket.addToBasket("BGLO");
-  //   basket.addToBasket("BGLO");
-  //   basket.addToBasket("BGLO");
-  //   basket.addToBasket("BGLO");
-  //   basket.addToBasket("BGLO");
-  //   basket.addToBasket("BGLO");
-  //   basket.addToBasket("BGLO");
-  //   basket.addToBasket("BGLO");
-  //   basket.addToBasket("BGLO");
-  //   basket.addToBasket("BGLO");
-  //   basket.addToBasket("BGLO");
-
-  //   basket.addToBasket("BGLO");
-  //   basket.addToBasket("BGLP");
-  //   basket.addToBasket("BGLE");
-  //   basket.addToBasket("BGLS");
-  //   basket.addToBasket("COF");
-  //   basket.addToBasket("BGSE");
-
-  //   basket.countQuantity();
-
-  //   const result = basket.discountedPrice();
-
-  //   // { BGLO: 7, BGLP: 1, BGLE: 1, BGLS: 1, COF: 1, BGSE: 1 }.discountedPrice()
-
-  //   console.log("line 262............................", result);
-  //   // verify
-  //   expect(result).toEqual(expected);
-  // });
-
-  it("returns object of sku:quantity", () => {
+  it("discount amount", () => {
     // set up
     const expected = -1.35;
     // execute
@@ -297,8 +255,6 @@ describe("Basket", () => {
     basket.addToBasket("BGLO");
     basket.addToBasket("BGLO");
     basket.addToBasket("BGLO");
-
-    basket.countQuantity();
 
     const result = basket.discountedPrice();
 
@@ -332,7 +288,7 @@ describe("Basket", () => {
 
   it("discounted price", () => {
     // set up
-    const expected = 1.59;
+    const expected = -1.59;
     // execute
     basket.basketSize = 50;
     basket.addToBasket("BGLO");
@@ -371,7 +327,7 @@ describe("Basket", () => {
     expect(result).toEqual(expected);
   });
 
-  fit("total price", () => {
+  it("total price", () => {
     // set up
     const expected = 10.56;
     // execute
@@ -412,7 +368,7 @@ describe("Basket", () => {
     expect(result).toEqual(expected);
   });
 
-  fit("total price", () => {
+  it("final price", () => {
     // set up
     const expected = 8.97;
     // execute

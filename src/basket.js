@@ -47,12 +47,12 @@ class Basket {
   }
 
   totalBasketPrice() {
-    let totalPrice = 0;
+    let totalPrice = +0;
     for (let i = 0; i < this.basketArray.length; i++) {
       totalPrice += this.checkPrice(this.basketArray[i]["sku"]);
     }
 
-    return Number(totalPrice).toFixed(3);
+    return +totalPrice.toFixed(2);
   }
 
   discountedPrice() {
@@ -62,39 +62,27 @@ class Basket {
       const quantitySku = this.countQuantity()[property];
       console.log(property);
       switch (true) {
-        case "BGLP" && quantitySku >= 12:
+        case property === "BGLP" && quantitySku >= 12:
           accumulatedCost +=
             Math.floor(this.countQuantity()[property] / 12) * -0.69;
           break;
-        case "BGLO" && quantitySku >= 6:
+        case property === "BGLO" && quantitySku >= 6:
           accumulatedCost +=
             Math.floor(this.countQuantity()[property] / 6) * -0.45;
           break;
 
-        case "BGLE" && quantitySku >= 6:
+        case property === "BGLE" && quantitySku >= 6:
           accumulatedCost +=
             Math.floor(this.countQuantity()[property] / 6) * -0.45;
           break;
       }
     }
-    console.log("73.....................", accumulatedCost);
-    return accumulatedCost;
+
+    return +accumulatedCost.toFixed(2);
   }
 
-  // discountedPrice() {
-  //   let cost = 0;
-  //   for (let property in this.countQuantity()) {
-  //     if (property === "BGLO" && this.countQuantity()[property] >= 6) {
-  //       cost += Math.floor(this.countQuantity()[property] / 6) * -0.45;
-  //     }
-  //   }
-  //   return cost;
-  // }
-
   finalPrice() {
-    return Number(
-      (+this.totalBasketPrice() + this.discountedPrice()).toFixed(2)
-    );
+    return +(+this.totalBasketPrice() + this.discountedPrice()).toFixed(2);
   }
 }
 

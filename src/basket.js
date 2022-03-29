@@ -50,15 +50,23 @@ class Basket {
     for (let i = 0; i < this.basketArray.length; i++) {
       this.discountedArray.push(this.basketArray[i].sku);
     }
+
+
     this.count = this.discountedArray.reduce((tally, sku) => {
       tally[sku] = (tally[sku] || 0) + 1;
       return tally;
     }, {});
+
+
     let totalDiscount = 0;
     const skus = Object.keys(this.count);
+
+
     for (let i = 0; i < skus.length; i++) {
       const count = this.count[skus[i]];
       const item = this.getItem(skus[i]);
+
+      
       if (item.discount) {
         if (count >= item.discountTrigger) {
           totalDiscount +=

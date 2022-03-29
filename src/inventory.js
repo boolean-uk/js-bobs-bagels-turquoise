@@ -1,4 +1,4 @@
-const inventory = [
+const menu = [
   {
     sku: "BGLO",
     price: 0.49,
@@ -6,7 +6,6 @@ const inventory = [
     variant: "Onion",
     discount: "6 for 2.49",
     saving: -0.45,
-    discountTrigger: 6,
   },
   {
     sku: "BGLP",
@@ -22,7 +21,7 @@ const inventory = [
     name: "Bagel",
     variant: "Everything",
     discount: "6 for 2.49",
-    saving: -0.49,
+    saving: -0.45,
   },
   {
     sku: "BGLS",
@@ -50,4 +49,4 @@ const inventory = [
   },
 ];
 
-module.exports = inventory;
+module.exports = menu;

@@ -5,8 +5,7 @@ const menu = [
     name: "Bagel",
     variant: "Onion",
     discount: "6 for 2.49",
-    saving: -0.45,
-    discountTrigger: 6
+    saving: -0.45
   },
   {
     sku: "BGLP",
@@ -15,7 +14,6 @@ const menu = [
     variant: "Plain",
     discount: "12 for 3.99",
     saving: -0.69
-    // discountTrigger: 12
   },
   {
     sku: "BGLE",
@@ -23,8 +21,7 @@ const menu = [
     name: "Bagel",
     variant: "Everything",
     discount: "6 for 2.49",
-    saving: -0.49
-    // discountTrigger: 6
+    saving: -0.45
   },
   {
     sku: "BGLS",

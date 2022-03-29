@@ -16,12 +16,10 @@ describe("Basket", () => {
         name: "Bagel",
         variant: "Onion",
         discount: "6 for 2.49",
-        saving: -0.45,
-        discountTrigger: 6
+        saving: -0.45
       }
     ];
-    // execute
-    // basket.this.basketSize = 4
+
     basket.addToBasket("BGLO");
     const result = basket.basketArray;
     // verify
@@ -37,8 +35,7 @@ describe("Basket", () => {
         name: "Bagel",
         variant: "Onion",
         discount: "6 for 2.49",
-        saving: -0.45,
-        discountTrigger: 6
+        saving: -0.45
       },
       {
         sku: "BGLP",
@@ -54,7 +51,7 @@ describe("Basket", () => {
         name: "Bagel",
         variant: "Everything",
         discount: "6 for 2.49",
-        saving: -0.49
+        saving: -0.45
       }
     ];
 
@@ -77,7 +74,7 @@ describe("Basket", () => {
         name: "Bagel",
         variant: "Everything",
         discount: "6 for 2.49",
-        saving: -0.49
+        saving: -0.45
       }
     ];
     // execute
@@ -92,7 +89,7 @@ describe("Basket", () => {
     expect(result).toEqual(expected);
   });
 
-  it("trys to add more than one item to a basket that is full", () => {
+  it("tries to add more than one item to a basket that is full", () => {
     // set up
     const expected = "WARNING - Basket is full";
     // execute
@@ -312,7 +309,7 @@ describe("Basket", () => {
     expect(result).toEqual(expected);
   });
 
-  fit("returns object of sku:quantity", () => {
+  it("final price", () => {
     // set up
     const expected = 2.49;
     // execute
@@ -329,6 +326,129 @@ describe("Basket", () => {
     // { BGLO: 7, BGLP: 1, BGLE: 1, BGLS: 1, COF: 1, BGSE: 1 }.discountedPrice()
 
     console.log("line 262............................", result);
+    // verify
+    expect(result).toEqual(expected);
+  });
+
+  it("discounted price", () => {
+    // set up
+    const expected = 1.59;
+    // execute
+    basket.basketSize = 50;
+    basket.addToBasket("BGLO");
+    basket.addToBasket("BGLO");
+    basket.addToBasket("BGLO");
+    basket.addToBasket("BGLO");
+    basket.addToBasket("BGLO");
+    basket.addToBasket("BGLO");
+
+    basket.addToBasket("BGLE");
+    basket.addToBasket("BGLE");
+    basket.addToBasket("BGLE");
+    basket.addToBasket("BGLE");
+    basket.addToBasket("BGLE");
+    basket.addToBasket("BGLE");
+
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+
+    const result = basket.discountedPrice();
+
+    // { BGLO: 7, BGLP: 1, BGLE: 1, BGLS: 1, COF: 1, BGSE: 1 }.discountedPrice()
+
+    console.log("line 262............................", result);
+    // verify
+    expect(result).toEqual(expected);
+  });
+
+  fit("total price", () => {
+    // set up
+    const expected = 10.56;
+    // execute
+    basket.basketSize = 50;
+    basket.addToBasket("BGLO");
+    basket.addToBasket("BGLO");
+    basket.addToBasket("BGLO");
+    basket.addToBasket("BGLO");
+    basket.addToBasket("BGLO");
+    basket.addToBasket("BGLO");
+
+    basket.addToBasket("BGLE");
+    basket.addToBasket("BGLE");
+    basket.addToBasket("BGLE");
+    basket.addToBasket("BGLE");
+    basket.addToBasket("BGLE");
+    basket.addToBasket("BGLE");
+
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+
+    const result = basket.totalBasketPrice();
+
+    // { BGLO: 7, BGLP: 1, BGLE: 1, BGLS: 1, COF: 1, BGSE: 1 }.discountedPrice()
+
+    console.log("line 262............................", result);
+    // verify
+    expect(result).toEqual(expected);
+  });
+
+  fit("total price", () => {
+    // set up
+    const expected = 8.97;
+    // execute
+    basket.basketSize = 50;
+    basket.addToBasket("BGLO");
+    basket.addToBasket("BGLO");
+    basket.addToBasket("BGLO");
+    basket.addToBasket("BGLO");
+    basket.addToBasket("BGLO");
+    basket.addToBasket("BGLO");
+
+    basket.addToBasket("BGLE");
+    basket.addToBasket("BGLE");
+    basket.addToBasket("BGLE");
+    basket.addToBasket("BGLE");
+    basket.addToBasket("BGLE");
+    basket.addToBasket("BGLE");
+
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+    basket.addToBasket("BGLP");
+
+    const result = basket.finalPrice();
+
+    // { BGLO: 7, BGLP: 1, BGLE: 1, BGLS: 1, COF: 1, BGSE: 1 }.discountedPrice()
+
+    console.log("line 451............................", result);
     // verify
     expect(result).toEqual(expected);
   });

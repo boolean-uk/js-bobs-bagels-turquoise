@@ -3,7 +3,7 @@ const menu = require("./inventory.js");
 class Basket {
   constructor() {
     this.basketArray = [];
-    this.basketSize = 4;
+    this.basketSize = 20;
   }
   addToBasket(sku) {
     for (let i = 0; i < menu.length; i++) {
@@ -23,7 +23,6 @@ class Basket {
     return "That item isn't in your basket";
   }
 
-  // return individual price
   checkPrice(sku) {
     let itemPrice = 0;
     for (let i = 0; i < menu.length; i++) {
@@ -33,8 +32,6 @@ class Basket {
     }
     return itemPrice;
   }
-
-  // { BGLO: 7, BGLP: 1, BGLE: 1, BGLS: 1, COF: 1, BGSE: 1 }
 
   countQuantity() {
     const skuArray = [];
@@ -59,14 +56,40 @@ class Basket {
   }
 
   discountedPrice() {
-    let cost = 0;
+    let accumulatedCost = 0;
+
     for (let property in this.countQuantity()) {
-      if (property === "BGLO" && this.countQuantity()[property] >= 6) {
-        cost += Math.floor(this.countQuantity()[property] / 6) * -0.45;
+      const quantitySku = this.countQuantity()[property];
+      console.log(property);
+      switch (true) {
+        case "BGLP" && quantitySku >= 12:
+          accumulatedCost +=
+            Math.floor(this.countQuantity()[property] / 12) * -0.69;
+          break;
+        case "BGLO" && quantitySku >= 6:
+          accumulatedCost +=
+            Math.floor(this.countQuantity()[property] / 6) * -0.45;
+          break;
+
+        case "BGLE" && quantitySku >= 6:
+          accumulatedCost +=
+            Math.floor(this.countQuantity()[property] / 6) * -0.45;
+          break;
       }
     }
-    return cost;
+    console.log("73.....................", accumulatedCost);
+    return accumulatedCost;
   }
+
+  // discountedPrice() {
+  //   let cost = 0;
+  //   for (let property in this.countQuantity()) {
+  //     if (property === "BGLO" && this.countQuantity()[property] >= 6) {
+  //       cost += Math.floor(this.countQuantity()[property] / 6) * -0.45;
+  //     }
+  //   }
+  //   return cost;
+  // }
 
   finalPrice() {
     return Number(

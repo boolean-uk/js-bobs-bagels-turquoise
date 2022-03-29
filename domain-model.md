@@ -95,3 +95,11 @@ Verb: see, add more than once, before adding to basket
 - countQuantity() will iterate through basketArray, and create a object {sku: @Number}
 - discountedAmount() will return the price that is going to be discounted
   -finalPrice(): subtracts discountedAmount from totalBasketPrice
+
+  ## Extension 2
+
+| Methods            | Output                    |
+| ------------------ | ------------------------- |
+| countQuantity()    | Object {sku: @Number}     |
+| discountedAmount() | discounted amount @Number |
+| finalPrice()       | final price @Number       |

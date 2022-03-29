@@ -43,7 +43,7 @@ class Price {
 
     for (let property in this.countQuantity()) {
       const quantitySku = this.countQuantity()[property];
-      console.log(property);
+
       switch (true) {
         case property === "BGLP" && quantitySku >= 12:
           accumulatedCost +=

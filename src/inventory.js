@@ -21,7 +21,7 @@ const menu = [
     name: "Bagel",
     variant: "Everything",
     discount: "6 for 2.49",
-    saving: -0.45
+    saving: -0.4
   },
   {
     sku: "BGLS",

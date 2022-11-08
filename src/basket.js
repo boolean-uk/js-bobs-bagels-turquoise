@@ -6,14 +6,12 @@ class Basket {
         this.basketSize = 4;
         this.priceArray = []
         this.discountedArray = []
-        this.totalPriceArray = []
         this.count = 0;
     }
     addToBasket(sku) {
         for (let i = 0; i < menu.length; i++) {
             if (menu[i].sku === sku && this.basketArray.length < this.basketSize) {
                 this.basketArray.push(menu[i])
-                this.checkPrice(sku)
             }
         }
         return "WARNING - Basket is full"
@@ -38,23 +36,33 @@ class Basket {
 
     totalBasketPrice() {
         let totalPrice = 0
-        for (let i = 0; i < this.priceArray.length; i++) {
-            totalPrice += this.priceArray[i]
+        for (let i = 0; i < this.basketArray.length; i++) {
+            totalPrice += this.basketArray[i].price
         }
         let discountedPrice = this.discountedPrice()
         totalPrice = totalPrice + discountedPrice
         return Number(totalPrice.toFixed(2))
     }
 
-    discountedPrice() {
+    addToDiscountedArray(){
         for (let i = 0; i < this.basketArray.length; i++) {
             this.discountedArray.push(this.basketArray[i].sku)
         }
-        this.count = this.discountedArray.reduce((tally, sku) => {
-            tally[sku] = (tally[sku] || 0) + 1;
-            return tally;
-        }, {})
-        let totalDiscount = 0;
+    }
+
+    cofBagelDiscount(totalDiscount){
+        if ('COF' in this.count && 'BGLP' in this.count) {
+            const bagelRest = this.count['BGLP'] % 12
+            if (bagelRest != 0) {
+                const howManyCoffee = this.count['COF']
+                const lesserBetweenBagelCoffee = Math.min(bagelRest, howManyCoffee)
+                totalDiscount -= 0.39 * lesserBetweenBagelCoffee
+            }
+        }
+        return totalDiscount
+    }
+
+    bagelDiscount(totalDiscount){
         const skus = Object.keys(this.count)
         for (let i = 0; i < skus.length; i++) {
             const count = this.count[skus[i]]
@@ -62,10 +70,21 @@ class Basket {
             if (item.discount) {
                 if (count >= item.discountTrigger) {
                     totalDiscount += item.saving * (Math.floor(count / item.discountTrigger))
-                    console.log("totaldiscount is ", totalDiscount)
                 }
             }
         }
+        totalDiscount = this.cofBagelDiscount(totalDiscount)
+        return totalDiscount
+    }
+
+    discountedPrice() {
+        this.addToDiscountedArray()
+        this.count = this.discountedArray.reduce((tally, sku) => {
+            tally[sku] = (tally[sku] || 0) + 1
+            return tally
+        }, {})
+        let totalDiscount = 0;
+        totalDiscount = this.bagelDiscount(totalDiscount)
         return totalDiscount
     }
 
@@ -76,12 +95,6 @@ class Basket {
             }
         }
     }
-
-    //this discountedPrice function is now returning an object which contains
-    //the name of each SKU and the amount of times it occurs 
-
-    // for (let i = 0; i < this.discountedArray.length; i++)
-    // if (this.discountedArray[i].sku === ""
 
 }
 

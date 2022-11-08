@@ -182,7 +182,7 @@ describe("Basket", () => {
 
   it("returns the price of all items in the basket", () => {
     // set up
-    const expected = 5.84
+    const expected = 5.45
     // execute
     // basket.this.basketSize = 4
     basket.basketSize = 6
@@ -202,7 +202,7 @@ describe("Basket", () => {
 
   it("Applies special offer pricing to the basket total", () => {
     // set up
-    const expected = 23.89
+    const expected = 22.33
     // execute
     basket.basketSize = 50
     for (let i = 0; i < 6; i++) {
@@ -232,6 +232,40 @@ describe("Basket", () => {
     for (let i = 0; i < 7; i++) {
       basket.addToBasket("BGLO")
       basket.addToBasket("BGLE")
+    }
+
+    const result = basket.totalBasketPrice()
+    // verify
+    expect(result).toEqual(expected);
+  })
+
+  it("Applies special offer pricing twice to different product", () => {
+    // set up
+    const expected = 19.31
+    // execute
+    basket.basketSize = 55
+    for (let i = 0; i < 25; i++) {
+      basket.addToBasket("BGLP")
+    }
+    for (let i = 0; i < 13; i++) {
+      basket.addToBasket("BGLO")
+      basket.addToBasket("BGLE")
+    }
+
+
+    const result = basket.totalBasketPrice()
+    // verify
+    expect(result).toEqual(expected);
+  })
+
+  it("Applies special offer pricing for COF and BGLP", () => {
+    // set up
+    const expected = 3.96
+    // execute
+    basket.basketSize = 10
+    for (let i = 0; i < 4; i++) {
+      basket.addToBasket("BGLP")
+      basket.addToBasket("COF")
     }
 
     const result = basket.totalBasketPrice()

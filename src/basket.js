@@ -15,20 +15,24 @@ class Basket {
       { sku: "BGLS", quantity: 0 },
       { sku: "COF", quantity: 0 },
       { sku: "BGSE", quantity: 0 },
-      { sku: "BGSS", quantity: 0 }
+      { sku: "BGSS", quantity: 0 },
     ];
   }
   addToBasket(sku) {
     for (let i = 0; i < menu.length; i++) {
       if (menu[i].sku === sku && this.basketArray.length < this.basketSize) {
-        this.basketArray.push(menu[i]);
-        for (let j= 0; j< this.quantities.length; j++) {
-            if (sku === this.quantities.sku) {
-                this.quantities[j].quantity += 2
-            }
+        if (!this.basketArray.find((item) => item.sku === sku)) {
+          this.basketArray.push(menu[i]);
         }
-        return this.quantities
 
+        for (let j = 0; j < this.quantities.length; j++) {
+          if (sku === this.quantities[j].sku) {
+            this.quantities[j].quantity += 1;
+          }
+        }
+
+        this.quantities;
+        return "Your item is in the cart";
       }
     }
     return "WARNING - Basket is full";
@@ -96,11 +100,14 @@ class Basket {
 }
 
 let testBasket = new Basket();
+testBasket.basketSize = 50;
 testBasket.addToBasket("BGLO");
 testBasket.addToBasket("BGLO");
 testBasket.addToBasket("BGLO");
-testBasket.addToBasket("BGLO");
-console.log("add when test is full", testBasket.addToBasket("BGLO"));
+testBasket.addToBasket("BGLE");
+testBasket.addToBasket("BGLE");
+testBasket.addToBasket("BGLE");
+console.log(testBasket.addToBasket("BGLE"));
 
 console.log(testBasket.basketArray);
 console.log(testBasket.quantities);

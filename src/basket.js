@@ -61,33 +61,49 @@ class Basket {
 		for (let i = 0; i < this.basketArray.length; i++) {
 			totalPrice += this.basketArray[i].price * this.quantities[i].quantity
 		}
-		totalPrice = totalPrice - this.discountedPrice()
+		totalPrice = totalPrice + this.discountedPrice()
 		return Number(totalPrice.toFixed(2))
 	}
 
-	discountedPrice() {
-		for (let i = 0; i < this.basketArray.length; i++) {
-			this.discountedArray.push(this.basketArray[i].sku)
-		}
-		this.count = this.discountedArray.reduce((tally, sku) => {
-			tally[sku] = (tally[sku] || 0) + 1
-			return tally
-		}, {})
-		let totalDiscount = 0
-		const skus = Object.keys(this.count)
-		for (let i = 0; i < skus.length; i++) {
-			const count = this.count[skus[i]]
-			const item = this.getItem(skus[i])
-			if (item.discount) {
-				if (count >= item.discountTrigger) {
-					totalDiscount +=
-						item.saving * Math.floor(count / item.discountTrigger)
-				}
-			}
-		}
+	// discountedPrice() {
+	// 	for (let i = 0; i < this.basketArray.length; i++) {
+	// 		this.discountedArray.push(this.basketArray[i].sku)
+	// 	}
+	// 	this.count = this.discountedArray.reduce((tally, sku) => {
+	// 		tally[sku] = (tally[sku] || 0) + 1
+	// 		return tally
+	// 	}, {})
+	// 	let totalDiscount = 0
+	// 	const skus = Object.keys(this.count)
+	// 	for (let i = 0; i < skus.length; i++) {
+	// 		const count = this.count[skus[i]]
+	// 		const item = this.getItem(skus[i])
+	// 		if (item.discount) {
+	// 			if (count >= item.discountTrigger) {
+	// 				totalDiscount +=
+	// 					item.saving * Math.floor(count / item.discountTrigger)
+	// 			}
+	// 		}
+	// 	}
 
-		return totalDiscount
-	}
+	// 	return totalDiscount
+	// }
+
+    discountedPrice() {
+        let totalDiscount = 0;
+        const quantities = this.quantities;
+        for (let i = 0; i < quantities.length; i++) {
+          const sku = quantities[i].sku;
+          const count = quantities[i].quantity;
+          const item = this.getItem(sku);
+          if (item.discount && count >= item.discountTrigger) {
+            const discountMultiplier = Math.floor(count / item.discountTrigger);
+            totalDiscount += item.saving * discountMultiplier;
+          }
+        }
+        console.log(totalDiscount);
+        return Number(totalDiscount);
+      }
 
 	getItem(sku) {
 		for (let i = 0; i < menu.length; i++) {

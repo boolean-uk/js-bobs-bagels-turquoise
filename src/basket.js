@@ -36,7 +36,7 @@ class Basket {
 			}
 		}
 		return 'WARNING - Basket is full'
-	}
+  }
 
 	removeItems(sku) {
 		for (var i = 0; i < this.basketArray.length; i++) {

@@ -18,6 +18,7 @@ class Basket {
 			{ sku: 'BGSS', quantity: 0 },
 		]
 	}
+
 	addToBasket(sku) {
 		for (let i = 0; i < menu.length; i++) {
 			if (menu[i].sku === sku && this.basketArray.length < this.basketSize) {
@@ -30,16 +31,14 @@ class Basket {
 						this.quantities[j].quantity += 1
 					}
 				}
-
-				this.quantities
 				return 'Your item is in the cart'
 			}
 		}
 		return 'WARNING - Basket is full'
-  }
+	}
 
 	removeItems(sku) {
-		for (var i = 0; i < this.basketArray.length; i++) {
+		for (let i = 0; i < this.basketArray.length; i++) {
 			if (this.basketArray[i].sku === sku) {
 				this.basketArray.splice(i, 1)
 			}
@@ -99,7 +98,7 @@ class Basket {
 	}
 }
 
-let testBasket = new Basket()
+const testBasket = new Basket()
 testBasket.basketSize = 50
 testBasket.addToBasket('BGLO')
 testBasket.addToBasket('BGLO')

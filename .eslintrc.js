@@ -5,7 +5,7 @@ module.exports = {
 		node: true,
 		jasmine: true,
 	},
-	extends: ['standard'],
+	extends: ['standard', 'prettier'],
 	parserOptions: {
 		ecmaVersion: 12,
 	},

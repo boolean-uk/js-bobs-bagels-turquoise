@@ -22,12 +22,12 @@ class Basket {
   }
 
   removeItems(sku) {
-    for (var i = 0; i < this.basketArray.length; i++) {
-      if (this.basketArray[i].sku === sku) {
+    this.basketArray.forEach((item) => {
+      if (item.sku === sku) {
         this.basketArray.splice(i, 1)
       }
       return "That item isn't in your basket"
-    }
+    })
   }
 
   checkPrice(sku) {

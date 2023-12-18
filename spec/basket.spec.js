@@ -17,7 +17,7 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Onion',
           discount: '6 for 2.49',
-          saving: -0.49,
+          saving: 0.45,
           discountTrigger: 6
         }
       ]
@@ -40,7 +40,7 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Onion',
           discount: '6 for 2.49',
-          saving: -0.49,
+          saving: 0.45,
           discountTrigger: 6
         },
         {
@@ -49,7 +49,7 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Plain',
           discount: '12 for 3.99',
-          saving: -0.69
+          saving: 0.69
         },
         {
           sku: 'BGLE',
@@ -57,7 +57,7 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Everything',
           discount: '6 for 2.49',
-          saving: -0.49
+          saving: 0.45
         }
       ]
 
@@ -108,7 +108,7 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Plain',
           discount: '12 for 3.99',
-          saving: -0.69
+          saving: 0.69
         },
         {
           sku: 'BGLE',
@@ -116,7 +116,7 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Everything',
           discount: '6 for 2.49',
-          saving: -0.49
+          saving: 0.45
         }
       ]
 
@@ -153,7 +153,7 @@ describe('Basket', () => {
         name: 'Bagel',
         variant: 'Onion',
         discount: '6 for 2.49',
-        saving: -0.49,
+        saving: 0.45,
         discountTrigger: 6
       },
       {
@@ -162,7 +162,7 @@ describe('Basket', () => {
         name: 'Bagel',
         variant: 'Plain',
         discount: '12 for 3.99',
-        saving: -0.69
+        saving: 0.69
       },
       {
         sku: 'BGLE',
@@ -170,7 +170,7 @@ describe('Basket', () => {
         name: 'Bagel',
         variant: 'Everything',
         discount: '6 for 2.49',
-        saving: -0.49
+        saving: 0.45
       },
       {
         sku: 'BGLS',

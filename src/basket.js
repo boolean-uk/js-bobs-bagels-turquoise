@@ -12,10 +12,7 @@ class Basket {
 
     addToBasket(sku) {
         for (let i = 0; i < menu.length; i++) {
-            if (
-                menu[i].sku === sku &&
-                this.basketArray.length < this.basketSize
-            ) {
+            if ( menu[i].sku === sku && this.basketArray.length < this.basketSize) {
                 this.basketArray.push(menu[i]);
             }
         }
@@ -56,16 +53,17 @@ class Basket {
         this.count = this.discountedArray.reduce((tally, sku) => {
             tally[sku] = (tally[sku] || 0) + 1;
             return tally;
-        }, {});
+        }, {})
+
         let totalDiscount = 0;
-        const skus = Object.keys(this.count);
+        const skus = Object.keys(this.count)
+
         for (let i = 0; i < skus.length; i++) {
             const count = this.count[skus[i]];
             const item = this.getItem(skus[i]);
             if (item.discount) {
                 if (count >= item.discountTrigger) {
-                    totalDiscount +=
-                        item.saving * Math.floor(count / item.discountTrigger);
+                    totalDiscount += item.saving * Math.floor(count / item.discountTrigger);
                 }
             }
         }

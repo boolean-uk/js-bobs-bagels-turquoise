@@ -88,8 +88,9 @@ class Basket {
 
       const hasCOF = this.count['COF'] >= 1
       const hasBGLP = this.count['BGLP'] >= 1
+      const hasBGLPDeal = this.count['BGLP'] % 12 === 0
 
-      if (hasCOF && hasBGLP) {
+      if (hasCOF && hasBGLP && !hasBGLPDeal) {
         const pairCount = Math.min(this.count['COF'], this.count['BGLP'])
         totalDiscount += -0.13 * pairCount
 

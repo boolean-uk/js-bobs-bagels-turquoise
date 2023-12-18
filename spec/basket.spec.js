@@ -258,6 +258,7 @@ describe('Basket', () => {
     it('Applies special offer pricing to the basket total', () => {
       // set up
       const expected = 2.94
+
       // execute
       basket.basketSize = 50
       basket.addToBasket('BGLO')
@@ -292,8 +293,9 @@ describe('Basket', () => {
       basket.addToBasket('BGLS')
       basket.addToBasket('COF')
       basket.addToBasket('BGSE')
-  
+
       const result = basket.totalBasketPrice()
+
       // verify
       expect(result).toEqual(expected)
     })

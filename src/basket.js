@@ -52,16 +52,20 @@ class Basket {
   discountedPrice() {
     for (let i = 0; i < this.basketArray.length; i++) {
       this.discountedArray.push(this.basketArray[i].sku)
+    //   console.log(this.discountedArray)
     }
     this.count = this.discountedArray.reduce((tally, sku) => {
       tally[sku] = (tally[sku] || 0) + 1
+    //   console.log(tally)
       return tally
     }, {})
     let totalDiscount = 0
     const skus = Object.keys(this.count)
     for (let i = 0; i < skus.length; i++) {
       const count = this.count[skus[i]]
+      console.log(count)
       const item = this.getItem(skus[i])
+      console.log(item)
       if (item.discount) {
         if (count >= item.discountTrigger) {
           totalDiscount +=
@@ -89,18 +93,25 @@ class Basket {
 }
 
 const b = new Basket()
+b.basketSize = 10
 b.addToBasket('BGLO')
-b.addToBasket('BGLE')
+b.addToBasket('BGLO')
+b.addToBasket('BGLO')
+b.addToBasket('BGLO')
+b.addToBasket('BGLO')
+b.addToBasket('BGLO')
+// b.addToBasket('BGLE')
+// b.addToBasket('BGLE')
 b.checkPrice('BGLO')
 b.checkPrice('BGLO')
 b.checkPrice('BGLO')
 b.checkPrice('BGLO')
 b.checkPrice('BGLO')
 b.checkPrice('BGLO')
-b.checkPrice('BGLE')
+// b.checkPrice('BGLE')
 // console.log(b.addToBasket())
 // console.log(b.removeItems('BGLE'))
-console.log(b.basketArray)
+// console.log(b.basketArray)
 console.log(b.totalBasketPrice())
 // console.log(b.checkPrice('BGLO'))
 

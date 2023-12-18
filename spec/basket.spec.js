@@ -351,7 +351,7 @@ describe('Basket', () => {
     })
   })
 
-  it('when multiple special offers in basket', () => {
+  it('when multiple special offers in basket as well as non special offer items', () => {
     // set up
     const expected = 5.47
 

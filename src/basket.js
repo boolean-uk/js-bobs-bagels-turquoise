@@ -52,20 +52,16 @@ class Basket {
   discountedPrice() {
     for (let i = 0; i < this.basketArray.length; i++) {
       this.discountedArray.push(this.basketArray[i].sku)
-      //   console.log(this.discountedArray)
     }
     this.count = this.discountedArray.reduce((tally, sku) => {
       tally[sku] = (tally[sku] || 0) + 1
-      //   console.log(tally)
       return tally
     }, {})
     let totalDiscount = 0
     const skus = Object.keys(this.count)
     for (let i = 0; i < skus.length; i++) {
       const count = this.count[skus[i]]
-    //   console.log(count)
       const item = this.getItem(skus[i])
-    //   console.log(item)
       if (item.discount) {
         if (count >= item.discountTrigger) {
           totalDiscount +=
@@ -73,7 +69,6 @@ class Basket {
         }
       }
     }
-    // console.log(totalDiscount)
     return totalDiscount
   }
 
@@ -87,9 +82,6 @@ class Basket {
 
   // this discountedPrice function is now returning an object which contains
   // the name of each SKU and the amount of times it occurs
-
-  // for (let i = 0; i < this.discountedArray.length; i++)
-  // if (this.discountedArray[i].sku === ""
 }
 
 module.exports = Basket

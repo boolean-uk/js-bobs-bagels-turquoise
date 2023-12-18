@@ -199,11 +199,12 @@ describe('Basket', () => {
       const expected = [2.99]
 
       // execute
-      basket.checkPrice('BGSE')
-      const result = basket.priceArray
+      const result = basket.checkPrice('BGSE')
+      const updatedPriceArray = basket.priceArray
 
       // verify
-      expect(result).toEqual(expected)
+      expect(result).toBeTrue()
+      expect(updatedPriceArray).toEqual(expected)
     })
 
     it('unable to check price of item that does not exist', () => {

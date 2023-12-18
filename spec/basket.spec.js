@@ -57,7 +57,8 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Everything',
           discount: '6 for 2.49',
-          saving: 0.45
+          saving: 0.45,
+          discountTrigger: 6
         }
       ]
 
@@ -116,7 +117,8 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Everything',
           discount: '6 for 2.49',
-          saving: 0.45
+          saving: 0.45,
+          discountTrigger: 6
         }
       ]
 
@@ -170,7 +172,8 @@ describe('Basket', () => {
         name: 'Bagel',
         variant: 'Everything',
         discount: '6 for 2.49',
-        saving: 0.45
+        saving: 0.45,
+        discountTrigger: 6
       },
       {
         sku: 'BGLS',
@@ -254,8 +257,10 @@ describe('Basket', () => {
       // verify
       expect(result).toEqual(expected)
     })
+  })
 
-    it('applies special offer pricing for onion bagel', () => {
+  describe('calculate special offer pricing', () => {
+    it('for onion bagel', () => {
       // set up
       const expected = 2.49
 
@@ -280,49 +285,74 @@ describe('Basket', () => {
       expect(result).toEqual(expected)
     })
 
-    it('Applies special offer pricing to the basket total', () => {
+    it('for everything bagel', () => {
       // set up
-      const expected = 2.94
+      const expected = 2.49
 
       // execute
-      basket.basketSize = 50
-      basket.addToBasket('BGLO')
-      basket.addToBasket('BGLO')
-      basket.addToBasket('BGLO')
-      basket.addToBasket('BGLO')
-      basket.addToBasket('BGLO')
-      basket.addToBasket('BGLO')
-      basket.addToBasket('BGLP')
+      basket.basketSize = 6
       basket.addToBasket('BGLE')
-      basket.addToBasket('BGLS')
-      basket.addToBasket('COF')
-      basket.addToBasket('BGSE')
-      basket.addToBasket('BGLP')
       basket.addToBasket('BGLE')
-      basket.addToBasket('BGLS')
-      basket.addToBasket('COF')
-      basket.addToBasket('BGSE')
-      basket.checkPrice('BGLO')
-      basket.checkPrice('BGLO')
-      basket.checkPrice('BGLO')
-      basket.checkPrice('BGLO')
-      basket.checkPrice('BGLO')
-      basket.checkPrice('BGLO')
-      basket.checkPrice('BGLP')
+      basket.addToBasket('BGLE')
+      basket.addToBasket('BGLE')
+      basket.addToBasket('BGLE')
+      basket.addToBasket('BGLE')
       basket.checkPrice('BGLE')
-      basket.checkPrice('BGLS')
-      basket.checkPrice('COF')
-      basket.checkPrice('BGSE')
-      basket.checkPrice('BGLP')
       basket.checkPrice('BGLE')
-      basket.checkPrice('BGLS')
-      basket.checkPrice('COF')
-      basket.checkPrice('BGSE')
+      basket.checkPrice('BGLE')
+      basket.checkPrice('BGLE')
+      basket.checkPrice('BGLE')
+      basket.checkPrice('BGLE')
 
       const result = basket.totalBasketPrice()
 
       // verify
       expect(result).toEqual(expected)
     })
+  })
+
+  it('Applies special offer pricing to the basket total', () => {
+    // set up
+    const expected = 2.94
+
+    // execute
+    basket.basketSize = 50
+    basket.addToBasket('BGLO')
+    basket.addToBasket('BGLO')
+    basket.addToBasket('BGLO')
+    basket.addToBasket('BGLO')
+    basket.addToBasket('BGLO')
+    basket.addToBasket('BGLO')
+    basket.addToBasket('BGLP')
+    basket.addToBasket('BGLE')
+    basket.addToBasket('BGLS')
+    basket.addToBasket('COF')
+    basket.addToBasket('BGSE')
+    basket.addToBasket('BGLP')
+    basket.addToBasket('BGLE')
+    basket.addToBasket('BGLS')
+    basket.addToBasket('COF')
+    basket.addToBasket('BGSE')
+    basket.checkPrice('BGLO')
+    basket.checkPrice('BGLO')
+    basket.checkPrice('BGLO')
+    basket.checkPrice('BGLO')
+    basket.checkPrice('BGLO')
+    basket.checkPrice('BGLO')
+    basket.checkPrice('BGLP')
+    basket.checkPrice('BGLE')
+    basket.checkPrice('BGLS')
+    basket.checkPrice('COF')
+    basket.checkPrice('BGSE')
+    basket.checkPrice('BGLP')
+    basket.checkPrice('BGLE')
+    basket.checkPrice('BGLS')
+    basket.checkPrice('COF')
+    basket.checkPrice('BGSE')
+
+    const result = basket.totalBasketPrice()
+
+    // verify
+    expect(result).toEqual(expected)
   })
 })

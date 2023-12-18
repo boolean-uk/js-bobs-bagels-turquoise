@@ -193,15 +193,29 @@ describe('Basket', () => {
     expect(result).toEqual(expected)
   })
 
-  it('returns the price of an item', () => {
-    // set up
-    const expected = [2.99]
-    // execute
-    // basket.this.basketSize = 4
-    basket.checkPrice('BGSE')
-    const result = basket.priceArray
-    // verify
-    expect(result).toEqual(expected)
+  describe('when checking an item price', () => {
+    it('returns the price of an item', () => {
+      // set up
+      const expected = [2.99]
+
+      // execute
+      basket.checkPrice('BGSE')
+      const result = basket.priceArray
+
+      // verify
+      expect(result).toEqual(expected)
+    })
+
+    it('unable to check price of item that does not exist', () => {
+      // set up
+      const expected = 'sorry this item does not exist'
+
+      // execute
+      const result = basket.checkPrice()
+
+      // verify
+      expect(result).toEqual(expected)
+    })
   })
 
   it('returns the price of all items in the basket', () => {

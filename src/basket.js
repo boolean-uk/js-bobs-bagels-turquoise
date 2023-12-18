@@ -42,9 +42,9 @@ class Basket {
 
   totalBasketPrice() {
     let totalPrice = 0
-    for (let i = 0; i < this.priceArray.length; i++) {
-      totalPrice += this.priceArray[i]
-    }
+    this.priceArray.forEach((price) => {
+      totalPrice += price
+    })
     totalPrice = totalPrice - this.discountedPrice()
     return Number(totalPrice.toFixed(2))
   }
@@ -89,11 +89,14 @@ class Basket {
 }
 
 const b = new Basket()
-// b.addToBasket('BGLO')
-// b.addToBasket('BGLE')
-console.log(b.addToBasket())
+b.addToBasket('BGLO')
+b.addToBasket('BGLE')
+b.checkPrice('BGLO')
+b.checkPrice('BGLE')
+// console.log(b.addToBasket())
 // console.log(b.removeItems('BGLE'))
-// console.log(b.basketArray)
+console.log(b.basketArray)
+console.log(b.totalBasketPrice())
 // console.log(b.checkPrice('BGLO'))
 
 module.exports = Basket

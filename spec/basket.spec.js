@@ -233,8 +233,8 @@ describe('Basket', () => {
   it('returns the price of all items in the basket', () => {
     // set up
     const expected = 5.84
+
     // execute
-    // basket.this.basketSize = 4
     basket.basketSize = 6
     basket.addToBasket('BGLO')
     basket.addToBasket('BGLP')
@@ -249,6 +249,7 @@ describe('Basket', () => {
     basket.checkPrice('COF')
     basket.checkPrice('BGSE')
     const result = basket.totalBasketPrice()
+
     // verify
     expect(result).toEqual(expected)
   })

@@ -113,8 +113,6 @@ I would like to order items in groupings at a discounted price
 When I checkout, I would like these new prices to be reflected onto the total cost.
 ```
 
-
-
 ### Keywords
 
 1. **Verbs:** order, discounted, checkout, reflected

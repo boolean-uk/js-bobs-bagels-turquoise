@@ -6,6 +6,7 @@ describe('Basket', () => {
   beforeEach(() => {
     basket = new Basket()
   })
+
   describe('when adding items', () => {
     it('adds 1 item to basket', () => {
       // set up
@@ -86,28 +87,42 @@ describe('Basket', () => {
     })
   })
 
-  it('remove items from basket', () => {
-    // set up
-    const expected = [
-      {
-        sku: 'BGLE',
-        price: 0.49,
-        name: 'Bagel',
-        variant: 'Everything',
-        discount: '6 for 2.49',
-        saving: -0.49
-      }
-    ]
-    // execute
-    // basket.this.basketSize = 4
-    basket.addToBasket('BGLO')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLE')
-    basket.removeItems('BGLO')
-    basket.removeItems('BGLP')
-    const result = basket.basketArray
-    // verify
-    expect(result).toEqual(expected)
+  describe('when removing items', () => {
+    it('remove items from basket', () => {
+      // set up
+      const expected = [
+        {
+          sku: 'BGLE',
+          price: 0.49,
+          name: 'Bagel',
+          variant: 'Everything',
+          discount: '6 for 2.49',
+          saving: -0.49
+        }
+      ]
+
+      // execute
+      basket.addToBasket('BGLO')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLE')
+      basket.removeItems('BGLO')
+      basket.removeItems('BGLP')
+      const result = basket.basketArray
+
+      // verify
+      expect(result).toEqual(expected)
+    })
+
+    it("It can't remove items from basket that doesn't exist", () => {
+      // set up
+      const expected = "That item isn't in your basket"
+
+      // execute
+      const result = basket.removeItems(99)
+
+      // verify
+      expect(result).toEqual(expected)
+    })
   })
 
   it('allows a manager to increase basket size if required', () => {
@@ -166,17 +181,6 @@ describe('Basket', () => {
     basket.addToBasket('COF')
     basket.addToBasket('BGSE')
     const result = basket.basketArray
-    // verify
-    expect(result).toEqual(expected)
-  })
-
-  it("It can't remove items from basket that doesn't exist", () => {
-    // set up
-    const expected = "That item isn't in your basket"
-    // execute
-    // basket.this.basketSize = 4
-
-    const result = basket.removeItems(99)
     // verify
     expect(result).toEqual(expected)
   })

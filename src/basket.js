@@ -26,8 +26,8 @@ class Basket {
       if (this.basketArray[i].sku === sku) {
         this.basketArray.splice(i, 1)
       }
+      return "That item isn't in your basket"
     }
-    return "That item isn't in your basket"
   }
 
   checkPrice(sku) {

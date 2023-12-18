@@ -9,6 +9,7 @@ class Basket {
         this.totalPriceArray = [];
         this.count = 0;
     }
+
     addToBasket(sku) {
         for (let i = 0; i < menu.length; i++) {
             if (
@@ -68,7 +69,6 @@ class Basket {
                 }
             }
         }
-
         return totalDiscount;
     }
 

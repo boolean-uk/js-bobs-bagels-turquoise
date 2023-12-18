@@ -236,22 +236,9 @@ describe('Basket', () => {
     const expected = 5.55
 
     basket.updateBasketSize(16)
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLP')
+    for (let i = 0; i < 16; i++) {
+      basket.addToBasket('BGLP')
+    }
 
     const result = basket.totalBasketPrice()
 
@@ -263,6 +250,24 @@ describe('Basket', () => {
 
     basket.addToBasket('COF')
     basket.addToBasket('COF')
+    basket.addToBasket('BGLP')
+
+    const result = basket.totalBasketPrice()
+
+    expect(result).toEqual(expected)
+  })
+
+  it('Applies discount for 13 plain bagels & 2 coffee and plain bagel deals', () => {
+    const expected = 6.88
+
+    basket.updateBasketSize(20)
+    for (let i = 0; i < 12; i++) {
+      basket.addToBasket('BGLP')
+    }
+    basket.addToBasket('COF')
+    basket.addToBasket('BGLP')
+    basket.addToBasket('COF')
+    basket.addToBasket('BGLP')
     basket.addToBasket('BGLP')
 
     const result = basket.totalBasketPrice()
@@ -291,6 +296,30 @@ describe('Basket', () => {
     basket.addToBasket('BGLP')
     basket.addToBasket('COF')
     basket.addToBasket('BGLP')
+    basket.addToBasket('COF')
+
+    const result = basket.totalBasketPrice()
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it('Applies special offer pricing to the basket total with multiple deals', () => {
+    // set up
+    const expected = 10.43
+    // execute
+    basket.updateBasketSize(50)
+
+    for (let i = 0; i < 12; i++) {
+      basket.addToBasket('BGLP')
+    }
+
+    for (let i = 0; i < 6; i++) {
+      basket.addToBasket('BGLE')
+    }
+    basket.addToBasket('BGLO')
+    basket.addToBasket('BGLO')
+    basket.addToBasket('COF')
+    basket.addToBasket('COF')
     basket.addToBasket('COF')
 
     const result = basket.totalBasketPrice()

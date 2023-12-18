@@ -309,6 +309,43 @@ describe('Basket', () => {
       // verify
       expect(result).toEqual(expected)
     })
+
+    it('for plain bagel', () => {
+      // set up
+      const expected = 3.99
+
+      // execute
+      basket.basketSize = 12
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.checkPrice('BGLP')
+      basket.checkPrice('BGLP')
+      basket.checkPrice('BGLP')
+      basket.checkPrice('BGLP')
+      basket.checkPrice('BGLP')
+      basket.checkPrice('BGLP')
+      basket.checkPrice('BGLP')
+      basket.checkPrice('BGLP')
+      basket.checkPrice('BGLP')
+      basket.checkPrice('BGLP')
+      basket.checkPrice('BGLP')
+      basket.checkPrice('BGLP')
+
+      const result = basket.totalBasketPrice()
+
+      // verify
+      expect(result).toEqual(expected)
+    })
   })
 
   it('Applies special offer pricing to the basket total', () => {

@@ -11,14 +11,14 @@ class Basket {
   }
 
   addToBasket(sku) {
-    menu.forEach((item) => {
-      if (item.sku !== sku) return 'This item does not exist'
+    const foundItem = menu.find((item) => item.sku === sku)
 
-      if (item.sku === sku && this.basketArray.length < this.basketSize) {
-        return this.basketArray.push(item)
-      }
-      return 'WARNING - Basket is full'
-    })
+    if (!foundItem) return 'This item does not exist'
+
+    if (this.basketArray.length <= this.basketSize) {
+      this.basketArray.push(foundItem)
+    }
+    return 'WARNING - Basket is full'
   }
 
   removeItems(sku) {
@@ -87,5 +87,12 @@ class Basket {
   // for (let i = 0; i < this.discountedArray.length; i++)
   // if (this.discountedArray[i].sku === ""
 }
+
+// const basket = new Basket()
+// basket.addToBasket('BGLO')
+// basket.addToBasket('BGLO')
+// basket.addToBasket('BGLO')
+// basket.addToBasket('BGLO')
+// console.log(basket.addToBasket('BGLO'))
 
 module.exports = Basket

@@ -18,6 +18,7 @@ class Basket {
         this.basketArray.push(bagel)
       }
     })
+    return true
   }
 
   removeItems(sku) {
@@ -85,9 +86,5 @@ class Basket {
   // for (let i = 0; i < this.discountedArray.length; i++)
   // if (this.discountedArray[i].sku === ""
 }
-
-const b = new Basket()
-console.log(b.addToBasket('BGLO'))
-console.log(b.basketArray)
 
 module.exports = Basket

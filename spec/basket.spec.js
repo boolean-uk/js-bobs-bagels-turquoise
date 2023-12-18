@@ -22,10 +22,11 @@ describe('Basket', () => {
     ]
     // execute
     // basket.this.basketSize = 4
-    basket.addToBasket('BGLO')
-    const result = basket.basketArray
+    const result = basket.addToBasket('BGLO')
+    const updatedBasket = basket.basketArray
     // verify
-    expect(result).toEqual(expected)
+    expect(result).toBeTrue()
+    expect(updatedBasket).toEqual(expected)
   })
 
   it('adds 3 items to basket', () => {

@@ -55,31 +55,29 @@ class Basket {
     }
     this.count = this.discountedArray.reduce((tally, sku) => {
       tally[sku] = (tally[sku] || 0) + 1
-      // console.log(tally)
       return tally
     }, {})
     let totalDiscount = 0
     const skus = Object.keys(this.count)
-    // console.log('skus:', skus)
     for (let i = 0; i < skus.length; i++) {
       const count = this.count[skus[i]]
-      //   console.log(count)
       const item = this.getItem(skus[i])
-      //   console.log(item)
       if (item.discount) {
+        // if skus contains COF & BGLP and there are at least 1x of each of these items
         if (
           item.discount === 'Coffee & Plain Bagel for 1.25' &&
           skus.includes('COF') &&
-          skus.includes('BGLP')
+          skus.includes('BGLP') &&
+          this.count.COF >= 1 &&
+          this.count.BGLP >= 1
         ) {
-          //   if (count >= 1) {
-          if (this.count.COF >= 1 && this.count.BGLP >= 1) {
-            const lowestQuantityItem = Math.min(this.count.COF, this.count.BGLP)
-            totalDiscount += item.saving * lowestQuantityItem
-            this.count.COF -= lowestQuantityItem
-            this.count.BGLP -= lowestQuantityItem
-          }
-        //   console.log(this.count)
+          // find lowest quantity item to calc total saving
+          const lowestQuantityItem = Math.min(this.count.COF, this.count.BGLP)
+          totalDiscount += item.saving * lowestQuantityItem
+          // reduce count of COF & BGLP by lowest quantity so they aren't
+          // included in further discounts
+          this.count.COF -= lowestQuantityItem
+          this.count.BGLP -= lowestQuantityItem
         }
         if (count >= item.discountTrigger) {
           totalDiscount +=

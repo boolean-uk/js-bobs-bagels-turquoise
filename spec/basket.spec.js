@@ -6,67 +6,84 @@ describe('Basket', () => {
   beforeEach(() => {
     basket = new Basket()
   })
+  describe('when adding items', () => {
+    it('adds 1 item to basket', () => {
+      // set up
+      const expected = [
+        {
+          sku: 'BGLO',
+          price: 0.49,
+          name: 'Bagel',
+          variant: 'Onion',
+          discount: '6 for 2.49',
+          saving: -0.49,
+          discountTrigger: 6
+        }
+      ]
 
-  it('adds 1 item to basket', () => {
-    // set up
-    const expected = [
-      {
-        sku: 'BGLO',
-        price: 0.49,
-        name: 'Bagel',
-        variant: 'Onion',
-        discount: '6 for 2.49',
-        saving: -0.49,
-        discountTrigger: 6
-      }
-    ]
-    // execute
-    // basket.this.basketSize = 4
-    const result = basket.addToBasket('BGLO')
-    const updatedBasket = basket.basketArray
-    // verify
-    expect(result).toBeTrue()
-    expect(updatedBasket).toEqual(expected)
-  })
+      // execute
+      const result = basket.addToBasket('BGLO')
+      const updatedBasket = basket.basketArray
 
-  it('adds 3 items to basket', () => {
-    // set up
-    const expected = [
-      {
-        sku: 'BGLO',
-        price: 0.49,
-        name: 'Bagel',
-        variant: 'Onion',
-        discount: '6 for 2.49',
-        saving: -0.49,
-        discountTrigger: 6
-      },
-      {
-        sku: 'BGLP',
-        price: 0.39,
-        name: 'Bagel',
-        variant: 'Plain',
-        discount: '12 for 3.99',
-        saving: -0.69
-      },
-      {
-        sku: 'BGLE',
-        price: 0.49,
-        name: 'Bagel',
-        variant: 'Everything',
-        discount: '6 for 2.49',
-        saving: -0.49
-      }
-    ]
+      // verify
+      expect(result).toBeTrue()
+      expect(updatedBasket).toEqual(expected)
+    })
 
-    // execute
-    //    basket.this.basketSize = 4
-    basket.addToBasket('BGLO')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLE')
-    const result = basket.basketArray
-    // verify
-    expect(result).toEqual(expected)
+    it('adds 3 items to basket', () => {
+      // set up
+      const expected = [
+        {
+          sku: 'BGLO',
+          price: 0.49,
+          name: 'Bagel',
+          variant: 'Onion',
+          discount: '6 for 2.49',
+          saving: -0.49,
+          discountTrigger: 6
+        },
+        {
+          sku: 'BGLP',
+          price: 0.39,
+          name: 'Bagel',
+          variant: 'Plain',
+          discount: '12 for 3.99',
+          saving: -0.69
+        },
+        {
+          sku: 'BGLE',
+          price: 0.49,
+          name: 'Bagel',
+          variant: 'Everything',
+          discount: '6 for 2.49',
+          saving: -0.49
+        }
+      ]
+
+      // execute
+      basket.addToBasket('BGLO')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLE')
+      const result = basket.basketArray
+
+      // verify
+      expect(result).toEqual(expected)
+    })
+
+    it('trys to add more than one item to a basket that is full', () => {
+      // set up
+      const expected = 'WARNING - Basket is full'
+
+      // execute
+      basket.addToBasket('BGLO')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLE')
+      basket.addToBasket('COF')
+      const result = basket.addToBasket('BGSE')
+
+      // verify
+      expect(result).toEqual(expected)
+    })
   })
 
   it('remove items from basket', () => {
@@ -89,20 +106,6 @@ describe('Basket', () => {
     basket.removeItems('BGLO')
     basket.removeItems('BGLP')
     const result = basket.basketArray
-    // verify
-    expect(result).toEqual(expected)
-  })
-
-  it('trys to add more than one item to a basket that is full', () => {
-    // set up
-    const expected = 'WARNING - Basket is full'
-    // execute
-    // basket.this.basketSize = 4
-    basket.addToBasket('BGLO')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLE')
-    basket.addToBasket('COF')
-    const result = basket.addToBasket('BGSE')
     // verify
     expect(result).toEqual(expected)
   })

@@ -55,14 +55,32 @@ class Basket {
     }
     this.count = this.discountedArray.reduce((tally, sku) => {
       tally[sku] = (tally[sku] || 0) + 1
+      // console.log(tally)
       return tally
     }, {})
     let totalDiscount = 0
     const skus = Object.keys(this.count)
+    // console.log('skus:', skus)
     for (let i = 0; i < skus.length; i++) {
       const count = this.count[skus[i]]
+      //   console.log(count)
       const item = this.getItem(skus[i])
+      //   console.log(item)
       if (item.discount) {
+        if (
+          item.discount === 'Coffee & Plain Bagel for 1.25' &&
+          skus.includes('COF') &&
+          skus.includes('BGLP')
+        ) {
+          //   if (count >= 1) {
+          if (this.count.COF >= 1 && this.count.BGLP >= 1) {
+            const lowestQuantityItem = Math.min(this.count.COF, this.count.BGLP)
+            totalDiscount += item.saving * lowestQuantityItem
+            this.count.COF -= lowestQuantityItem
+            this.count.BGLP -= lowestQuantityItem
+          }
+        //   console.log(this.count)
+        }
         if (count >= item.discountTrigger) {
           totalDiscount +=
             item.saving * Math.floor(count / item.discountTrigger)
@@ -83,5 +101,59 @@ class Basket {
   // this discountedPrice function is now returning an object which contains
   // the name of each SKU and the amount of times it occurs
 }
+
+const b = new Basket()
+b.basketSize = 20
+// b.addToBasket('BGLP')
+// b.addToBasket('BGLP')
+// b.addToBasket('BGLP')
+// b.addToBasket('BGLP')
+// b.addToBasket('BGLP')
+// b.addToBasket('BGLP')
+// b.addToBasket('BGLP')
+// b.addToBasket('BGLP')
+// b.addToBasket('BGLP')
+// b.addToBasket('BGLP')
+// b.addToBasket('BGLP')
+// b.addToBasket('BGLP')
+// b.checkPrice('BGLP')
+// b.checkPrice('BGLP')
+// b.checkPrice('BGLP')
+// b.checkPrice('BGLP')
+// b.checkPrice('BGLP')
+// b.checkPrice('BGLP')
+// b.checkPrice('BGLP')
+// b.checkPrice('BGLP')
+// b.checkPrice('BGLP')
+// b.checkPrice('BGLP')
+// b.checkPrice('BGLP')
+// b.checkPrice('BGLP')
+// b.addToBasket('BGLE')
+// b.addToBasket('BGLE')
+// b.addToBasket('BGLE')
+// b.addToBasket('BGLE')
+// b.addToBasket('BGLE')
+// b.addToBasket('BGLE')
+// b.checkPrice('BGLE')
+// b.checkPrice('BGLE')
+// b.checkPrice('BGLE')
+// b.checkPrice('BGLE')
+// b.checkPrice('BGLE')
+// b.checkPrice('BGLE')
+b.addToBasket('COF')
+b.addToBasket('COF')
+b.addToBasket('COF')
+b.checkPrice('COF')
+b.checkPrice('COF')
+b.checkPrice('COF')
+b.addToBasket('BGLP')
+b.addToBasket('BGLP')
+b.checkPrice('BGLP')
+b.checkPrice('BGLP')
+
+// b.discountedPrice()
+// console.log(b.basketArray)
+console.log(b.totalBasketPrice())
+// console.log(b.checkPrice('BGLO'))
 
 module.exports = Basket

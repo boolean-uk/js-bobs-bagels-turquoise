@@ -351,6 +351,29 @@ describe('Basket', () => {
     })
   })
 
+  it('for coffee and plain bagel discount', () => {
+    // set up
+    const expected = 3.49
+
+    // execute
+    basket.basketSize = 6
+    basket.addToBasket('BGLP')
+    basket.addToBasket('BGLP')
+    basket.addToBasket('COF')
+    basket.addToBasket('COF')
+    basket.addToBasket('COF')
+    basket.checkPrice('BGLP')
+    basket.checkPrice('BGLP')
+    basket.checkPrice('COF')
+    basket.checkPrice('COF')
+    basket.checkPrice('COF')
+
+    const result = basket.totalBasketPrice()
+
+    // verify
+    expect(result).toEqual(expected)
+  })
+
   it('when multiple special offers in basket as well as non special offer items', () => {
     // set up
     const expected = 5.47

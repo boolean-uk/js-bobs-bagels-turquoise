@@ -11,12 +11,14 @@ class Basket {
   }
 
   addToBasket(sku) {
-    for (let i = 0; i < menu.length; i++) {
-      if (menu[i].sku === sku && this.basketArray.length < this.basketSize) {
-        this.basketArray.push(menu[i])
+    menu.forEach((item) => {
+      if (item.sku !== sku) return 'This item does not exist'
+
+      if (item.sku === sku && this.basketArray.length < this.basketSize) {
+        return this.basketArray.push(item)
       }
-    }
-    return 'WARNING - Basket is full'
+      return 'WARNING - Basket is full'
+    })
   }
 
   removeItems(sku) {

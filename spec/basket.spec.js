@@ -5,6 +5,7 @@ describe('Basket', () => {
 
   beforeEach(() => {
     basket = new Basket()
+    basket.basketArray = []
   })
   describe('/ adding and removing items', () => {
     it('/ add 1 item to basket', () => {
@@ -84,7 +85,6 @@ describe('Basket', () => {
 
     it("/ add an item that doesn't exist", () => {
       // set up
-      basket.basketArray = []
       const expected = 'This item does not exist'
       // execute
       const result = basket.addToBasket('BGLL')

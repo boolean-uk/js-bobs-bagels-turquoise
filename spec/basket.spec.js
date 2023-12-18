@@ -255,6 +255,31 @@ describe('Basket', () => {
       expect(result).toEqual(expected)
     })
 
+    it('applies special offer pricing for onion bagel', () => {
+      // set up
+      const expected = 2.49
+
+      // execute
+      basket.basketSize = 6
+      basket.addToBasket('BGLO')
+      basket.addToBasket('BGLO')
+      basket.addToBasket('BGLO')
+      basket.addToBasket('BGLO')
+      basket.addToBasket('BGLO')
+      basket.addToBasket('BGLO')
+      basket.checkPrice('BGLO')
+      basket.checkPrice('BGLO')
+      basket.checkPrice('BGLO')
+      basket.checkPrice('BGLO')
+      basket.checkPrice('BGLO')
+      basket.checkPrice('BGLO')
+
+      const result = basket.totalBasketPrice()
+
+      // verify
+      expect(result).toEqual(expected)
+    })
+
     it('Applies special offer pricing to the basket total', () => {
       // set up
       const expected = 2.94
@@ -277,22 +302,22 @@ describe('Basket', () => {
       basket.addToBasket('BGLS')
       basket.addToBasket('COF')
       basket.addToBasket('BGSE')
-      basket.addToBasket('BGLO')
-      basket.addToBasket('BGLO')
-      basket.addToBasket('BGLO')
-      basket.addToBasket('BGLO')
-      basket.addToBasket('BGLO')
-      basket.addToBasket('BGLO')
-      basket.addToBasket('BGLP')
-      basket.addToBasket('BGLE')
-      basket.addToBasket('BGLS')
-      basket.addToBasket('COF')
-      basket.addToBasket('BGSE')
-      basket.addToBasket('BGLP')
-      basket.addToBasket('BGLE')
-      basket.addToBasket('BGLS')
-      basket.addToBasket('COF')
-      basket.addToBasket('BGSE')
+      basket.checkPrice('BGLO')
+      basket.checkPrice('BGLO')
+      basket.checkPrice('BGLO')
+      basket.checkPrice('BGLO')
+      basket.checkPrice('BGLO')
+      basket.checkPrice('BGLO')
+      basket.checkPrice('BGLP')
+      basket.checkPrice('BGLE')
+      basket.checkPrice('BGLS')
+      basket.checkPrice('COF')
+      basket.checkPrice('BGSE')
+      basket.checkPrice('BGLP')
+      basket.checkPrice('BGLE')
+      basket.checkPrice('BGLS')
+      basket.checkPrice('COF')
+      basket.checkPrice('BGSE')
 
       const result = basket.totalBasketPrice()
 

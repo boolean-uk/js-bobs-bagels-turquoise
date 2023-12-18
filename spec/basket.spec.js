@@ -241,7 +241,7 @@ describe('Basket', () => {
   describe('calculate total price', () => {
     it('returns the price of all items in the basket', () => {
       // set up
-      const expected = 5.84
+      const expected = 4.85
 
       // execute
       basket.basketSize = 6
@@ -249,13 +249,11 @@ describe('Basket', () => {
       basket.addToBasket('BGLP')
       basket.addToBasket('BGLE')
       basket.addToBasket('BGLS')
-      basket.addToBasket('COF')
       basket.addToBasket('BGSE')
       basket.checkPrice('BGLO')
       basket.checkPrice('BGLP')
       basket.checkPrice('BGLE')
       basket.checkPrice('BGLS')
-      basket.checkPrice('COF')
       basket.checkPrice('BGSE')
       const result = basket.totalBasketPrice()
 
@@ -378,7 +376,7 @@ describe('Basket', () => {
 
   it('when multiple special offers in basket as well as non special offer items', () => {
     // set up
-    const expected = 5.47
+    const expected = 6.72
 
     // execute
     basket.basketSize = 20
@@ -394,6 +392,8 @@ describe('Basket', () => {
     basket.addToBasket('BGLE')
     basket.addToBasket('BGLE')
     basket.addToBasket('BGLE') // 2.49 for 6
+    basket.addToBasket('COF')
+    basket.addToBasket('BGLP') // 1.25 for coffee and plain bagel
     basket.addToBasket('BGLS') // 0.49
 
     basket.checkPrice('BGLO')
@@ -408,6 +408,8 @@ describe('Basket', () => {
     basket.checkPrice('BGLE')
     basket.checkPrice('BGLE')
     basket.checkPrice('BGLE')
+    basket.checkPrice('COF')
+    basket.checkPrice('BGLP')
     basket.checkPrice('BGLS')
 
     const result = basket.totalBasketPrice()

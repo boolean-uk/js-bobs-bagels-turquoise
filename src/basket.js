@@ -88,4 +88,10 @@ class Basket {
   // if (this.discountedArray[i].sku === ""
 }
 
+const b = new Basket()
+b.addToBasket('BGLO')
+b.addToBasket('BGLE')
+console.log(b.removeItems('BGLE'))
+console.log(b.basketArray)
+
 module.exports = Basket

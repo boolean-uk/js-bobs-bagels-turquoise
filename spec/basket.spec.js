@@ -367,8 +367,8 @@ describe('Basket', () => {
     basket.checkPrice('BGLP')
     basket.checkPrice('BGLP')
     basket.checkPrice('COF')
-    basket.checkPrice('COF')
-    basket.checkPrice('COF')
+    basket.checkPrice('COF') // coffee & plain bagel = 1.25
+    basket.checkPrice('COF') // 1x coffee remaining at 0.99
 
     const result = basket.totalBasketPrice()
 

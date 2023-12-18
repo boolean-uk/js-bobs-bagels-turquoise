@@ -49,7 +49,8 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Plain',
           discount: '12 for 3.99',
-          saving: 0.69
+          saving: 0.69,
+          discountTrigger: 12
         },
         {
           sku: 'BGLE',
@@ -109,7 +110,8 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Plain',
           discount: '12 for 3.99',
-          saving: 0.69
+          saving: 0.69,
+          discountTrigger: 12
         },
         {
           sku: 'BGLE',
@@ -164,7 +166,8 @@ describe('Basket', () => {
         name: 'Bagel',
         variant: 'Plain',
         discount: '12 for 3.99',
-        saving: 0.69
+        saving: 0.69,
+        discountTrigger: 12
       },
       {
         sku: 'BGLE',

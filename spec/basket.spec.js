@@ -351,44 +351,39 @@ describe('Basket', () => {
     })
   })
 
-  it('Applies special offer pricing to the basket total', () => {
+  it('when multiple special offers in basket', () => {
     // set up
-    const expected = 2.94
+    const expected = 5.47
 
     // execute
-    basket.basketSize = 50
+    basket.basketSize = 20
     basket.addToBasket('BGLO')
     basket.addToBasket('BGLO')
     basket.addToBasket('BGLO')
     basket.addToBasket('BGLO')
     basket.addToBasket('BGLO')
-    basket.addToBasket('BGLO')
-    basket.addToBasket('BGLP')
+    basket.addToBasket('BGLO') // 2.49 for 6
     basket.addToBasket('BGLE')
-    basket.addToBasket('BGLS')
-    basket.addToBasket('COF')
-    basket.addToBasket('BGSE')
-    basket.addToBasket('BGLP')
     basket.addToBasket('BGLE')
-    basket.addToBasket('BGLS')
-    basket.addToBasket('COF')
-    basket.addToBasket('BGSE')
+    basket.addToBasket('BGLE')
+    basket.addToBasket('BGLE')
+    basket.addToBasket('BGLE')
+    basket.addToBasket('BGLE') // 2.49 for 6
+    basket.addToBasket('BGLS') // 0.49
+
     basket.checkPrice('BGLO')
     basket.checkPrice('BGLO')
     basket.checkPrice('BGLO')
     basket.checkPrice('BGLO')
     basket.checkPrice('BGLO')
     basket.checkPrice('BGLO')
-    basket.checkPrice('BGLP')
+    basket.checkPrice('BGLE')
+    basket.checkPrice('BGLE')
+    basket.checkPrice('BGLE')
+    basket.checkPrice('BGLE')
+    basket.checkPrice('BGLE')
     basket.checkPrice('BGLE')
     basket.checkPrice('BGLS')
-    basket.checkPrice('COF')
-    basket.checkPrice('BGSE')
-    basket.checkPrice('BGLP')
-    basket.checkPrice('BGLE')
-    basket.checkPrice('BGLS')
-    basket.checkPrice('COF')
-    basket.checkPrice('BGSE')
 
     const result = basket.totalBasketPrice()
 

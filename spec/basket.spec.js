@@ -110,17 +110,6 @@ describe('Basket', () => {
     expect(result).toEqual(expected)
   })
 
-  //    it("trys to add an item that doesn't exist", () => {
-  //     // set up
-  //     const expected = ("This item does not exist")
-  //     // execute
-  //     // basket.this.basketSize = 4
-
-  //     const result = basket.addToBasket("BGLL")
-  //     // verify
-  //      expect(result).toEqual(expected);
-  //    })
-
   it('allows a manager to increase basket size if required', () => {
     // set up
     const expected = [

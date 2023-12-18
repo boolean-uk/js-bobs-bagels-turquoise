@@ -51,11 +51,3 @@ As a member of the public,
 So that I can prepare to pay
 When I go to checkout I'd like to know the total sum of the bagels in my basket
 ```
-
-#### METHODS
-
-addToBasket(item) // adds item to baskets & returns false is isBasketFull returns true
-removeFrom(item) // removes item from basket
-isBasketFull() // returns true if basket is full
-increaseBasketCapacity() // Allows the basket to increase amount of items that can be carried
-cannotRemoveItemFromEmptyBasket(item) //

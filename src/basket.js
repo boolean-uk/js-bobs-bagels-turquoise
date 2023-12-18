@@ -32,11 +32,11 @@ class Basket {
   }
 
   checkPrice(sku) {
-    for (let i = 0; i < menu.length; i++) {
-      if (menu[i].sku === sku) {
-        // console.log("sku", menu[i])
-        this.priceArray.push(menu[i].price)
-      }
+    const bagelPrice = menu.find((bagel) => bagel.sku === sku)
+    if (!bagelPrice) return 'sorry this item does not exist'
+    else {
+      this.priceArray.push(bagelPrice.price)
+      return true
     }
   }
 
@@ -87,11 +87,5 @@ class Basket {
   // for (let i = 0; i < this.discountedArray.length; i++)
   // if (this.discountedArray[i].sku === ""
 }
-
-const b = new Basket()
-b.addToBasket('BGLO')
-b.addToBasket('BGLE')
-console.log(b.removeItems('BGLE'))
-console.log(b.basketArray)
 
 module.exports = Basket

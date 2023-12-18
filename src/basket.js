@@ -25,6 +25,7 @@ class Basket {
     for (let i = 0; i < this.basketArray.length; i++) {
       if (this.basketArray[i].sku === sku) {
         this.basketArray.splice(i, 1)
+        return true
       }
     }
     return "That item isn't in your basket"

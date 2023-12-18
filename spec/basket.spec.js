@@ -37,7 +37,8 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Onion',
           discount: '6 for 2.49',
-          saving: -0.49
+          saving: -0.49,
+          discountTrigger: 6
         },
         {
           sku: 'BGLP',
@@ -67,7 +68,7 @@ describe('Basket', () => {
       expect(result).toEqual(expected)
     })
 
-    it('trys to add more than one item to a basket that is full', () => {
+    it('/ add more than one item to a basket that is full', () => {
       // set up
       const expected = 'WARNING - Basket is full'
       // execute
@@ -81,8 +82,9 @@ describe('Basket', () => {
       expect(result).toEqual(expected)
     })
 
-    it("trys to add an item that doesn't exist", () => {
+    it("/ add an item that doesn't exist", () => {
       // set up
+      basket.basketArray = []
       const expected = 'This item does not exist'
       // execute
       const result = basket.addToBasket('BGLL')
@@ -171,7 +173,8 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Onion',
           discount: '6 for 2.49',
-          saving: -0.49
+          saving: -0.49,
+          discountTrigger: 6
         },
         {
           sku: 'BGLP',

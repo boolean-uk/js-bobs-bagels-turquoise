@@ -11,9 +11,10 @@ class Basket {
   }
 
   addToBasket(sku) {
+    if (sku.length === 0) return 'WARNING - sku required'
     const foundItem = menu.find((item) => item.sku === sku)
 
-    if (!foundItem) return 'This item does not exist'
+    if (!foundItem) return 'WARNING - item not found'
 
     if (this.basketArray.length <= this.basketSize) {
       this.basketArray.push(foundItem)
@@ -22,12 +23,13 @@ class Basket {
   }
 
   removeItems(sku) {
-    this.basketArray.forEach((item) => {
-      if (item.sku === sku) {
-        this.basketArray.splice(i, 1)
-      }
-      return "That item isn't in your basket"
-    })
+    const foundItem = this.basketArray.find((item) => (item.sku === sku))
+    if (foundItem) {
+      this.basketArray.splice(this.basketArray.indexOf(foundItem), 1)
+      return 'FOUND'
+    } else {
+      return 'WARNING - item not in basket'
+    }
   }
 
   checkPrice(sku) {
@@ -88,11 +90,12 @@ class Basket {
   // if (this.discountedArray[i].sku === ""
 }
 
-// const basket = new Basket()
-// basket.addToBasket('BGLO')
-// basket.addToBasket('BGLO')
-// basket.addToBasket('BGLO')
-// basket.addToBasket('BGLO')
-// console.log(basket.addToBasket('BGLO'))
+const basket = new Basket()
+basket.addToBasket('BGLO')
+basket.addToBasket('BGLO')
+basket.addToBasket('BGLO')
+basket.addToBasket('BGLO')
+console.log(basket.removeItems('BGLO'))
+console.log(basket.basketArray)
 
 module.exports = Basket

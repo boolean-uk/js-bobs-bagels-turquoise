@@ -41,16 +41,16 @@ I'd like to know if I try to remove an item that doesn't exist in my basket.
 
 | Methods | Inputs | Data | Scenario | Outputs
 | ------ | ------ | ------ | ----- | ------
-|[ ]  addToBasket|(sku)|sku: sku:(@string), price:(@string), name:(@string), variant(@string), fillings(@string) |if sku is valid| add item to basket as a string
-|[ ]  |||sku not valid|return "WARNING - Item not found"
-|[ ]  |||no sku added| return "WARNING - Sku required"
-|[ ]  |||if basket is full| return "WARNING - Basket is full"
-|[ ]  ||sku(@string), @Integer|if sku exist in basket| increase quanitity by one
-|[ ]  |||if sku does not exist in basket| add item to basket.
+|[X]  addToBasket|(sku)|sku: sku:(@string), price:(@string), name:(@string), variant(@string), fillings(@string) |if sku is valid| add item to basket as a string
+|[X]  |||sku not valid|return "WARNING - item not found"
+|[X]  |||no sku added| return "WARNING - sku required"
+|[X]  |||if basket is full| return "WARNING - Basket is full"
+|[X]  ||sku(@string), @Integer|if sku exist in basket| add another item to basket
+|[X]  |||if sku does not exist in basket| add item to basket.
 |[ ]  removeItems|(sku)|sku: sku:(@string), price:(@string), name:(@string), variant(@string), fillings(@string) |if sku is valid and in basket| remove item from basket
-|[ ]  |||no sku added| return "sku required"
-|[ ]  |||if sku does not exist in basket| return "That item isn't in your basket"
-|[ ]  |||if sku does exist in basket| item is spliced from basket array
+|[ ]  |||no sku added| return "WARNING - sku required"
+|[ ]  |||if sku does not exist in basket| return "WARNING - item not in basket"
+|[ ]  |||if sku exists in basket| item is spliced from basket array
 
 ## Changing Basket Size
 

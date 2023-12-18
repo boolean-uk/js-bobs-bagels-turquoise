@@ -85,7 +85,7 @@ describe('Basket', () => {
 
     it("/ add an item that doesn't exist", () => {
       // set up
-      const expected = 'This item does not exist'
+      const expected = 'WARNING - item not found'
       // execute
       const result = basket.addToBasket('BGLL')
       // verify
@@ -118,7 +118,7 @@ describe('Basket', () => {
 
     it("/ can't remove items from basket that don't exist", () => {
       // set up
-      const expected = "That item isn't in your basket"
+      const expected = "WARNING - item not in basket"
       // execute
       // basket.this.basketSize = 4
 

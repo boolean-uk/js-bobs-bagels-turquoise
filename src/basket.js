@@ -92,4 +92,27 @@ class Basket {
   // if (this.discountedArray[i].sku === ""
 }
 
+const b = new Basket()
+b.basketSize = 10
+b.addToBasket('BGLE')
+b.addToBasket('BGLE')
+b.addToBasket('BGLE')
+b.addToBasket('BGLE')
+b.addToBasket('BGLE')
+b.addToBasket('BGLE')
+// b.addToBasket('BGLE')
+// b.addToBasket('BGLE')
+b.checkPrice('BGLE')
+b.checkPrice('BGLE')
+b.checkPrice('BGLE')
+b.checkPrice('BGLE')
+b.checkPrice('BGLE')
+b.checkPrice('BGLE')
+// b.checkPrice('BGLE')
+// console.log(b.addToBasket())
+// console.log(b.removeItems('BGLE'))
+// console.log(b.basketArray)
+console.log(b.totalBasketPrice())
+// console.log(b.checkPrice('BGLO'))
+
 module.exports = Basket

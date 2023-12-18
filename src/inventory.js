@@ -22,7 +22,8 @@ const inventory = [
     name: 'Bagel',
     variant: 'Everything',
     discount: '6 for 2.49',
-    saving: 0.45
+    saving: 0.45,
+    discountTrigger: 6
   },
   {
     sku: 'BGLS',

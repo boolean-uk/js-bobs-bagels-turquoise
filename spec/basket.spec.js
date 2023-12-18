@@ -188,7 +188,9 @@ describe('Basket', () => {
         sku: 'COF',
         price: 0.99,
         name: 'Bagel',
-        variant: ''
+        variant: '',
+        discount: 'Coffee & Plain Bagel for 1.25',
+        saving: 0.13
       },
       {
         sku: 'BGSE',

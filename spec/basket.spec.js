@@ -71,7 +71,18 @@ describe('Basket', () => {
       expect(result).toEqual(expected)
     })
 
-    it('trys to add more than one item to a basket that is full', () => {
+    it('tries adding an item that does not exist', () => {
+      // set up
+      const expected = 'this item does not exist'
+
+      // execute
+      const result = basket.addToBasket()
+
+      // verify
+      expect(result).toEqual(expected)
+    })
+
+    it('tries to add more than one item to a basket that is full', () => {
       // set up
       const expected = 'WARNING - Basket is full'
 

@@ -13,12 +13,12 @@ class Basket {
   addToBasket(sku) {
     if (this.basketArray.length >= this.basketSize)
       return 'WARNING - Basket is full'
-    menu.forEach((bagel) => {
-      if (bagel.sku === sku) {
-        this.basketArray.push(bagel)
-      }
-    })
-    return true
+    const bagelToAdd = menu.find((bagel) => bagel.sku === sku)
+    if (!bagelToAdd) return 'this item does not exist'
+    else {
+      this.basketArray.push(bagelToAdd)
+      return true
+    }
   }
 
   removeItems(sku) {
@@ -87,5 +87,13 @@ class Basket {
   // for (let i = 0; i < this.discountedArray.length; i++)
   // if (this.discountedArray[i].sku === ""
 }
+
+const b = new Basket()
+// b.addToBasket('BGLO')
+// b.addToBasket('BGLE')
+console.log(b.addToBasket())
+// console.log(b.removeItems('BGLE'))
+// console.log(b.basketArray)
+// console.log(b.checkPrice('BGLO'))
 
 module.exports = Basket

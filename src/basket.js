@@ -4,7 +4,6 @@ class Basket {
   constructor() {
     this.basketArray = []
     this.basketSize = 4
-    this.priceArray = []
     this.discountedArray = []
     this.totalPriceArray = []
     this.count = 0
@@ -23,7 +22,7 @@ class Basket {
   }
 
   removeItems(sku) {
-    const foundItem = this.basketArray.find((item) => (item.sku === sku))
+    const foundItem = this.basketArray.find((item) => item.sku === sku)
     if (foundItem) {
       this.basketArray.splice(this.basketArray.indexOf(foundItem), 1)
       return 'FOUND'
@@ -33,20 +32,16 @@ class Basket {
   }
 
   checkPrice(sku) {
-    for (let i = 0; i < menu.length; i++) {
-      if (menu[i].sku === sku) {
-        this.priceArray.push(menu[i].price)
-      }
-    }
-    return this.priceArray
+    const foundItem = menu.find((item) => item.sku === sku)
+    return foundItem.price
   }
 
   totalBasketPrice() {
     let totalPrice = 0
-    for (let i = 0; i < this.priceArray.length; i++) {
-      totalPrice += this.priceArray[i]
-    }
-    totalPrice = totalPrice - this.discountedPrice()
+    this.basketArray.forEach((item) => {
+      totalPrice += item.price
+    })
+    // totalPrice = totalPrice - this.discountedPrice()
     return Number(totalPrice.toFixed(2))
   }
 
@@ -96,6 +91,8 @@ basket.addToBasket('BGLO')
 
 console.log(basket.basketArray.length)
 console.log(basket.discountedArray)
+
 console.log(basket.checkPrice('BGLO'))
+console.log(basket.totalBasketPrice())
 
 module.exports = Basket

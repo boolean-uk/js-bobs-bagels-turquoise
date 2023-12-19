@@ -124,10 +124,9 @@ describe('Basket', () => {
   describe('/ item information', () => {
     it('/ returns the price of an item', () => {
       // set up
-      const expected = [2.99]
+      const expected = 2.99
       // execute
-      basket.checkPrice('BGSE')
-      const result = basket.priceArray
+      const result = basket.checkPrice('BGSE')
       // verify
       expect(result).toEqual(expected)
     })
@@ -143,12 +142,7 @@ describe('Basket', () => {
       basket.addToBasket('BGLS')
       basket.addToBasket('COF')
       basket.addToBasket('BGSE')
-      basket.checkPrice('BGLO')
-      basket.checkPrice('BGLP')
-      basket.checkPrice('BGLE')
-      basket.checkPrice('BGLS')
-      basket.checkPrice('COF')
-      basket.checkPrice('BGSE')
+
       const result = basket.totalBasketPrice()
       // verify
       expect(result).toEqual(expected)

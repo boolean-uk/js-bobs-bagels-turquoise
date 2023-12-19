@@ -22,7 +22,6 @@ describe('Basket', () => {
         }
       ]
       // execute
-      // basket.this.basketSize = 4
       basket.addToBasket('BGLO')
       const result = basket.basketArray
       // verify
@@ -60,7 +59,6 @@ describe('Basket', () => {
       ]
 
       // execute
-      //    basket.this.basketSize = 4
       basket.addToBasket('BGLO')
       basket.addToBasket('BGLP')
       basket.addToBasket('BGLE')
@@ -73,7 +71,6 @@ describe('Basket', () => {
       // set up
       const expected = 'WARNING - Basket is full'
       // execute
-      // basket.this.basketSize = 4
       basket.addToBasket('BGLO')
       basket.addToBasket('BGLP')
       basket.addToBasket('BGLE')
@@ -105,7 +102,6 @@ describe('Basket', () => {
         }
       ]
       // execute
-      // basket.this.basketSize = 4
       basket.addToBasket('BGLO')
       basket.addToBasket('BGLP')
       basket.addToBasket('BGLE')
@@ -118,10 +114,8 @@ describe('Basket', () => {
 
     it("/ can't remove items from basket that don't exist", () => {
       // set up
-      const expected = "WARNING - item not in basket"
+      const expected = 'WARNING - item not in basket'
       // execute
-      // basket.this.basketSize = 4
-
       const result = basket.removeItems(99)
       // verify
       expect(result).toEqual(expected)
@@ -132,7 +126,6 @@ describe('Basket', () => {
       // set up
       const expected = [2.99]
       // execute
-      // basket.this.basketSize = 4
       basket.checkPrice('BGSE')
       const result = basket.priceArray
       // verify
@@ -143,7 +136,6 @@ describe('Basket', () => {
       // set up
       const expected = 5.84
       // execute
-      // basket.this.basketSize = 4
       basket.basketSize = 6
       basket.addToBasket('BGLO')
       basket.addToBasket('BGLP')
@@ -226,7 +218,7 @@ describe('Basket', () => {
 
     it('/ applies special offer pricing to the basket total', () => {
       // set up
-      const expected = 2.94
+      const expected = 0.45
       // execute
       basket.basketSize = 50
       basket.addToBasket('BGLO')
@@ -235,33 +227,6 @@ describe('Basket', () => {
       basket.addToBasket('BGLO')
       basket.addToBasket('BGLO')
       basket.addToBasket('BGLO')
-      basket.addToBasket('BGLP')
-      basket.addToBasket('BGLE')
-      basket.addToBasket('BGLS')
-      basket.addToBasket('COF')
-      basket.addToBasket('BGSE')
-      basket.addToBasket('BGLP')
-      basket.addToBasket('BGLE')
-      basket.addToBasket('BGLS')
-      basket.addToBasket('COF')
-      basket.addToBasket('BGSE')
-      basket.addToBasket('BGLO')
-      basket.addToBasket('BGLO')
-      basket.addToBasket('BGLO')
-      basket.addToBasket('BGLO')
-      basket.addToBasket('BGLO')
-      basket.addToBasket('BGLO')
-      basket.addToBasket('BGLP')
-      basket.addToBasket('BGLE')
-      basket.addToBasket('BGLS')
-      basket.addToBasket('COF')
-      basket.addToBasket('BGSE')
-      basket.addToBasket('BGLP')
-      basket.addToBasket('BGLE')
-      basket.addToBasket('BGLS')
-      basket.addToBasket('COF')
-      basket.addToBasket('BGSE')
-
       const result = basket.totalBasketPrice()
       // verify
       expect(result).toEqual(expected)

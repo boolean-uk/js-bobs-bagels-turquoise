@@ -45,6 +45,11 @@ class Basket {
     return Number(totalPrice.toFixed(2))
   }
 
+  changeBasketSize(size) {
+    this.basketSize = size
+    return size
+  }
+
   discountedPrice() {
     for (let i = 0; i < this.basketArray.length; i++) {
       this.discountedArray.push(this.basketArray[i].sku)

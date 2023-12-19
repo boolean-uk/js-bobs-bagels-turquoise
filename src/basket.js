@@ -107,15 +107,4 @@ class Basket {
   }
 }
 
-const basket = new Basket()
-basket.basketSize = 20
-basket.addToBasket('BGLP')
-
-basket.addToBasket('COF')
-basket.addToBasket('COF')
-basket.addToBasket('COF')
-
-console.log(basket.discountedPrice())
-console.log(basket.totalBasketPrice())
-
 module.exports = Basket

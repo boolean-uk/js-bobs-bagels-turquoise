@@ -1,4 +1,4 @@
-const Basket = require('../src/basket.js')
+const { Basket } = require('../src/basket.js')
 
 describe('Basket', () => {
   let basket

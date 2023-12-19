@@ -22,9 +22,15 @@ function calcReceiptDiscount(item, skus, count) {
   return thisDiscount
 }
 
+function hasDiscount(discount) {
+  if (discount > 0) return `(-£${discount}) \n`
+  else return '\n'
+}
+
 class Receipt {
-  // constructor() {
-  // }
+  constructor() {
+    this.totalDiscount = 0
+  }
 
   itemsAndQuantities(list) {
     const receiptItemArr = []
@@ -35,9 +41,13 @@ class Receipt {
       const quantity = listItem[1]
       const itemDetails = getItem(item)
       const discount = calcReceiptDiscount(itemDetails, skus, quantity)
+      this.totalDiscount += discount
       const receiptItem = `${itemDetails.variant} ${
         itemDetails.name
-      } ${quantity} ${(itemDetails.price * quantity - discount).toFixed(2)}`
+      } x${quantity}  £${(itemDetails.price * quantity - discount).toFixed(
+        2
+      )}               
+                    ${hasDiscount(discount)}`
       receiptItemArr.push(receiptItem)
     })
     return receiptItemArr
@@ -46,7 +56,7 @@ class Receipt {
   printReceiptItems(list) {
     let listItem = ''
     this.itemsAndQuantities(list).forEach((item) => {
-      listItem += `${item} \n`
+      listItem += `${item}`
     })
     return listItem
   }
@@ -54,28 +64,35 @@ class Receipt {
   printReceipt(list, totalPrice) {
     return `~~~ Bob's Bagels ~~~
         
-        ${new Date().toLocaleString()}
+   ${new Date().toLocaleString()}
         
-        ----------------------------
+----------------------------
         
-        ${this.printReceiptItems(list)}
-        
-        ----------------------------
-        Total: £${totalPrice} 
+${this.printReceiptItems(list)}
+----------------------------
+       Total: £${totalPrice}
+
+You saved a total of £${this.totalDiscount.toFixed(2)}
+       on this shop
         
         Thank you
-        for your order!`
+     for your order!`
   }
 }
 
 const b = new Basket()
-b.basketSize = 15
+b.basketSize = 20
 b.addToBasket('BGLO')
 b.addToBasket('BGLO')
 b.addToBasket('BGLO')
 b.addToBasket('BGLO')
 b.addToBasket('BGLO')
 b.addToBasket('BGLO')
+b.addToBasket('BGLE')
+b.addToBasket('BGLE')
+b.addToBasket('BGLE')
+b.addToBasket('BGLE')
+b.addToBasket('BGLE')
 b.addToBasket('BGLE')
 b.addToBasket('BGLS')
 b.addToBasket('BGLS')
@@ -88,11 +105,16 @@ b.checkPrice('BGLO')
 b.checkPrice('BGLO')
 b.checkPrice('BGLO')
 b.checkPrice('BGLE')
+b.checkPrice('BGLE')
+b.checkPrice('BGLE')
+b.checkPrice('BGLE')
+b.checkPrice('BGLE')
+b.checkPrice('BGLE')
 b.checkPrice('BGLS')
 b.checkPrice('BGLS')
 b.checkPrice('BGLS')
 b.checkPrice('BGLP')
-console.log(b.totalBasketPrice())
+b.totalBasketPrice()
 
 const r = new Receipt()
 console.log(r.printReceipt(b.count, b.totalPrice))

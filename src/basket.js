@@ -11,12 +11,15 @@ class Basket {
   }
 
   addToBasket(sku) {
-    for (let i = 0; i < menu.length; i++) {
-      if (menu[i].sku === sku && this.basketArray.length < this.basketSize) {
-        this.basketArray.push(menu[i])
-      }
+    if (this.basketArray.length >= this.basketSize) {
+      return 'WARNING - Basket is full'
+    } else {
+      menu.forEach((bagel) => {
+        if (bagel.sku === sku) {
+          this.basketArray.push(bagel)
+        }
+      })
     }
-    return 'WARNING - Basket is full'
   }
 
   removeItems(sku) {

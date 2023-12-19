@@ -198,7 +198,7 @@ describe('Basket', () => {
         }
       ]
       // execute
-      basket.basketSize = 6
+      basket.changeBasketSize(6)
       basket.addToBasket('BGLO')
       basket.addToBasket('BGLP')
       basket.addToBasket('BGLE')

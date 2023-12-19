@@ -16,7 +16,7 @@ class Basket {
 
     if (!foundItem) return 'WARNING - item not found'
 
-    if (this.basketArray.length <= this.basketSize) {
+    if (this.basketArray.length < this.basketSize) {
       this.basketArray.push(foundItem)
     }
     return 'WARNING - Basket is full'
@@ -38,6 +38,7 @@ class Basket {
         this.priceArray.push(menu[i].price)
       }
     }
+    return this.priceArray
   }
 
   totalBasketPrice() {
@@ -84,11 +85,17 @@ class Basket {
 }
 
 const basket = new Basket()
+basket.basketSize = 8
 basket.addToBasket('BGLO')
 basket.addToBasket('BGLO')
 basket.addToBasket('BGLO')
 basket.addToBasket('BGLO')
-console.log(basket.removeItems('BGLO'))
-console.log(basket.basketArray)
+basket.addToBasket('BGLO')
+basket.addToBasket('BGLO')
+basket.addToBasket('BGLO')
+
+console.log(basket.basketArray.length)
+console.log(basket.discountedArray)
+console.log(basket.checkPrice('BGLO'))
 
 module.exports = Basket

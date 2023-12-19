@@ -32,11 +32,12 @@ class Basket {
   }
 
   checkPrice(sku) {
-    for (let i = 0; i < menu.length; i++) {
-      if (menu[i].sku === sku) {
-        // console.log("sku", menu[i])
-        this.priceArray.push(menu[i].price)
-      }
+    const priceToCheck = menu.find((bagel) => bagel.sku === sku)
+    if (!priceToCheck) {
+      return 'Enter a valid name'
+    } else {
+      this.priceArray.push(priceToCheck.price)
+      return this.priceArray
     }
   }
 
@@ -90,12 +91,9 @@ class Basket {
 const basket = new Basket()
 
 basket.addToBasket('BGLO')
-basket.addToBasket('BGLP')
-basket.addToBasket('BGLE')
 
-basket.removeItems('BGLP')
-console.log(basket.removeItems('BGLS'))
+console.log(basket.checkPrice('BGSE'))
 
-console.log(basket.basketArray)
+console.log(basket.priceArray)
 
 module.exports = Basket

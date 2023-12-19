@@ -122,6 +122,26 @@ describe('Basket', () => {
     })
   })
 
+  describe('checkPrice', () => {
+    it('returns the price of an item', () => {
+      // set up
+      const expected = [2.99]
+      // execute
+      // basket.this.basketSize = 4
+      basket.checkPrice('BGSE')
+      const result = basket.priceArray
+      // verify
+      expect(result).toEqual(expected)
+    })
+
+    it('returns an error if there is invalid input', () => {
+      const expected = 'Enter a valid name'
+
+      const result = basket.checkPrice()
+      expect(result).toEqual(expected)
+    })
+  })
+
   it('allows a manager to increase basket size if required', () => {
     // set up
     const expected = [
@@ -178,17 +198,6 @@ describe('Basket', () => {
     basket.addToBasket('COF')
     basket.addToBasket('BGSE')
     const result = basket.basketArray
-    // verify
-    expect(result).toEqual(expected)
-  })
-
-  it('returns the price of an item', () => {
-    // set up
-    const expected = [2.99]
-    // execute
-    // basket.this.basketSize = 4
-    basket.checkPrice('BGSE')
-    const result = basket.priceArray
     // verify
     expect(result).toEqual(expected)
   })

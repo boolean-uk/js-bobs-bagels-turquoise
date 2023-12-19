@@ -43,9 +43,9 @@ class Basket {
 
   totalBasketPrice() {
     let totalPrice = 0
-    for (let i = 0; i < this.priceArray.length; i++) {
-      totalPrice += this.priceArray[i]
-    }
+    this.priceArray.forEach((price) => {
+      totalPrice += price
+    })
     totalPrice = totalPrice - this.discountedPrice()
     return Number(totalPrice.toFixed(2))
   }
@@ -81,19 +81,19 @@ class Basket {
       }
     }
   }
-
-  //this discountedPrice function is now returning an object which contains
-  //the name of each SKU and the amount of times it occurs
-
-  // for (let i = 0; i < this.discountedArray.length; i++)
-  // if (this.discountedArray[i].sku === ""
 }
 const basket = new Basket()
 
 basket.addToBasket('BGLO')
+basket.addToBasket('BGLP')
 
-console.log(basket.checkPrice('BGSE'))
+basket.checkPrice('BGLP')
+basket.checkPrice('BGLP')
 
+basket.basketSize = 40
+
+console.log(basket.basketSize)
 console.log(basket.priceArray)
+console.log(basket.totalBasketPrice())
 
 module.exports = Basket

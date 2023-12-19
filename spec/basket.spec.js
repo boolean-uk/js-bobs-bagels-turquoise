@@ -16,7 +16,7 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Onion',
           discount: '6 for 2.49',
-          saving: -0.49,
+          saving: 0.45,
           discountTrigger: 6
         }
       ]
@@ -36,7 +36,7 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Onion',
           discount: '6 for 2.49',
-          saving: -0.49,
+          saving: 0.45,
           discountTrigger: 6
         },
         {
@@ -45,7 +45,8 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Plain',
           discount: '12 for 3.99',
-          saving: -0.69
+          saving: 0.69,
+          discountTrigger: 12
         },
         {
           sku: 'BGLE',
@@ -53,7 +54,8 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Everything',
           discount: '6 for 2.49',
-          saving: -0.49
+          saving: 0.45,
+          discountTrigger: 6
         }
       ]
 
@@ -90,7 +92,8 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Everything',
           discount: '6 for 2.49',
-          saving: -0.49
+          saving: 0.45,
+          discountTrigger: 6
         },
         {
           sku: 'BGLP',
@@ -98,7 +101,8 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Plain',
           discount: '12 for 3.99',
-          saving: -0.69
+          saving: 0.69,
+          discountTrigger: 12
         }
       ]
       // execute
@@ -127,7 +131,6 @@ describe('Basket', () => {
       // set up
       const expected = [2.99]
       // execute
-      // basket.this.basketSize = 4
       basket.checkPrice('BGSE')
       const result = basket.priceArray
       // verify
@@ -142,6 +145,76 @@ describe('Basket', () => {
     })
   })
 
+  describe('check the total price in the basket', () => {
+    it('returns the price of all items in the basket', () => {
+      // set up
+      const expected = 5.84
+      // execute
+      basket.basketSize = 6
+      basket.addToBasket('BGLO')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLE')
+      basket.addToBasket('BGLS')
+      basket.addToBasket('COF')
+      basket.addToBasket('BGSE')
+      basket.checkPrice('BGLO')
+      basket.checkPrice('BGLP')
+      basket.checkPrice('BGLE')
+      basket.checkPrice('BGLS')
+      basket.checkPrice('COF')
+      basket.checkPrice('BGSE')
+      const result = basket.totalBasketPrice()
+      // verify
+      expect(result).toEqual(expected)
+    })
+
+    it('Applies special offer pricing to the basket total', () => {
+      // set up
+      const expected = 6.85
+      // execute
+      basket.basketSize = 30
+      basket.addToBasket('BGLO')
+      basket.addToBasket('BGLO')
+      basket.addToBasket('BGLO')
+      basket.addToBasket('BGLO')
+      basket.addToBasket('BGLO')
+      basket.addToBasket('BGLO') // 2.49
+
+      basket.addToBasket('BGLE')
+      basket.addToBasket('BGLE')
+      basket.addToBasket('BGLE')
+      basket.addToBasket('BGLE')
+      basket.addToBasket('BGLE')
+      basket.addToBasket('BGLE') // 2.49
+
+      basket.addToBasket('COF') // 0.99
+      basket.addToBasket('BGLP') // 0.39
+      basket.addToBasket('BGLS') // 0.49
+
+      basket.checkPrice('BGLO')
+      basket.checkPrice('BGLO')
+      basket.checkPrice('BGLO')
+      basket.checkPrice('BGLO')
+      basket.checkPrice('BGLO')
+      basket.checkPrice('BGLO')
+
+      basket.checkPrice('BGLE')
+      basket.checkPrice('BGLE')
+      basket.checkPrice('BGLE')
+      basket.checkPrice('BGLE')
+      basket.checkPrice('BGLE')
+      basket.checkPrice('BGLE')
+
+      basket.checkPrice('COF')
+      basket.checkPrice('BGLP')
+      basket.checkPrice('BGLS')
+
+      const result = basket.totalBasketPrice()
+      // verify
+      expect(result).toEqual(expected)
+    })
+  })
+
   it('allows a manager to increase basket size if required', () => {
     // set up
     const expected = [
@@ -151,7 +224,7 @@ describe('Basket', () => {
         name: 'Bagel',
         variant: 'Onion',
         discount: '6 for 2.49',
-        saving: -0.49,
+        saving: 0.45,
         discountTrigger: 6
       },
       {
@@ -160,7 +233,8 @@ describe('Basket', () => {
         name: 'Bagel',
         variant: 'Plain',
         discount: '12 for 3.99',
-        saving: -0.69
+        saving: 0.69,
+        discountTrigger: 12
       },
       {
         sku: 'BGLE',
@@ -168,7 +242,8 @@ describe('Basket', () => {
         name: 'Bagel',
         variant: 'Everything',
         discount: '6 for 2.49',
-        saving: -0.49
+        saving: 0.45,
+        discountTrigger: 6
       },
       {
         sku: 'BGLS',
@@ -198,72 +273,6 @@ describe('Basket', () => {
     basket.addToBasket('COF')
     basket.addToBasket('BGSE')
     const result = basket.basketArray
-    // verify
-    expect(result).toEqual(expected)
-  })
-
-  it('returns the price of all items in the basket', () => {
-    // set up
-    const expected = 5.84
-    // execute
-    // basket.this.basketSize = 4
-    basket.basketSize = 6
-    basket.addToBasket('BGLO')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLE')
-    basket.addToBasket('BGLS')
-    basket.addToBasket('COF')
-    basket.addToBasket('BGSE')
-    basket.checkPrice('BGLO')
-    basket.checkPrice('BGLP')
-    basket.checkPrice('BGLE')
-    basket.checkPrice('BGLS')
-    basket.checkPrice('COF')
-    basket.checkPrice('BGSE')
-    const result = basket.totalBasketPrice()
-    // verify
-    expect(result).toEqual(expected)
-  })
-
-  it('Applies special offer pricing to the basket total', () => {
-    // set up
-    const expected = 2.94
-    // execute
-    basket.basketSize = 50
-    basket.addToBasket('BGLO')
-    basket.addToBasket('BGLO')
-    basket.addToBasket('BGLO')
-    basket.addToBasket('BGLO')
-    basket.addToBasket('BGLO')
-    basket.addToBasket('BGLO')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLE')
-    basket.addToBasket('BGLS')
-    basket.addToBasket('COF')
-    basket.addToBasket('BGSE')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLE')
-    basket.addToBasket('BGLS')
-    basket.addToBasket('COF')
-    basket.addToBasket('BGSE')
-    basket.addToBasket('BGLO')
-    basket.addToBasket('BGLO')
-    basket.addToBasket('BGLO')
-    basket.addToBasket('BGLO')
-    basket.addToBasket('BGLO')
-    basket.addToBasket('BGLO')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLE')
-    basket.addToBasket('BGLS')
-    basket.addToBasket('COF')
-    basket.addToBasket('BGSE')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLE')
-    basket.addToBasket('BGLS')
-    basket.addToBasket('COF')
-    basket.addToBasket('BGSE')
-
-    const result = basket.totalBasketPrice()
     // verify
     expect(result).toEqual(expected)
   })

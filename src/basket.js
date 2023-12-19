@@ -9,17 +9,23 @@ class Basket {
     this.totalPriceArray = []
     this.count = 0
   }
+
   addToBasket(sku) {
-    for (let i = 0; i < menu.length; i++) {
-      if (menu[i].sku === sku && this.basketArray.length < this.basketSize) {
-        this.basketArray.push(menu[i])
-      }
-    }
-    return 'WARNING - Basket is full'
+    if (this.basketArray.length >= this.basketSize)
+      return 'WARNING - Basket is full'
+
+    menu.find((item) => {
+      if (item.sku === sku) this.basketArray.push(item)
+    })
+    return this.basketArray
+  }
+
+  increaseBasketCapacity(number) {
+    this.basketSize = number
   }
 
   removeItems(sku) {
-    for (var i = 0; i < this.basketArray.length; i++) {
+    for (let i = 0; i < this.basketArray.length; i++) {
       if (this.basketArray[i].sku === sku) {
         this.basketArray.splice(i, 1)
       }
@@ -30,28 +36,20 @@ class Basket {
   checkPrice(sku) {
     for (let i = 0; i < menu.length; i++) {
       if (menu[i].sku === sku) {
-        // console.log("sku", menu[i])
         this.priceArray.push(menu[i].price)
       }
     }
+    return this.priceArray
   }
 
-  totalBasketPrice() {
-    let totalPrice = 0
-    for (let i = 0; i < this.priceArray.length; i++) {
-      totalPrice += this.priceArray[i]
-    }
-    totalPrice = totalPrice - this.discountedPrice()
-    return Number(totalPrice.toFixed(2))
-  }
 
   discountedPrice() {
     for (let i = 0; i < this.basketArray.length; i++) {
       this.discountedArray.push(this.basketArray[i].sku)
     }
-    this.count = this.discountedArray.reduce((tally, sku) => {
-      tally[sku] = (tally[sku] || 0) + 1
-      return tally
+    this.count = this.discountedArray.reduce((acc, sku) => {
+      acc[sku] = (acc[sku] || 0) + 1
+      return acc
     }, {})
     let totalDiscount = 0
     const skus = Object.keys(this.count)
@@ -69,6 +67,12 @@ class Basket {
     return totalDiscount
   }
 
+  totalBasketPrice() {
+    let totalPrice = this.priceArray.reduce((acc, total) => acc + total)
+    totalPrice -= this.discountedPrice()
+    return Number(totalPrice.toFixed(2))
+  }
+
   getItem(sku) {
     for (let i = 0; i < menu.length; i++) {
       if (menu[i].sku === sku) {
@@ -83,5 +87,24 @@ class Basket {
   // for (let i = 0; i < this.discountedArray.length; i++)
   // if (this.discountedArray[i].sku === ""
 }
+
+const basket = new Basket
+basket.addToBasket('BGLO')  
+basket.addToBasket('BGLO')
+basket.addToBasket('BGLO')
+basket.addToBasket('BGLO')
+basket.addToBasket('BGLO')
+basket.addToBasket('BGLO') 
+
+
+basket.checkPrice('BGLO')
+basket.checkPrice('BGLO')
+basket.checkPrice('BGLO')
+basket.checkPrice('BGLO')
+basket.checkPrice('BGLO')
+basket.checkPrice('BGLO')
+console.log(basket.discountedPrice())
+console.log(basket.checkPrice())
+
 
 module.exports = Basket

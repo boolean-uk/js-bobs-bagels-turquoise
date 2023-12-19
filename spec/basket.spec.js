@@ -17,7 +17,7 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Onion',
           discount: '6 for 2.49',
-          saving: -0.49,
+          saving: 0.45,
           discountTrigger: 6
         }
       ]
@@ -37,7 +37,7 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Onion',
           discount: '6 for 2.49',
-          saving: -0.49,
+          saving: 0.45,
           discountTrigger: 6
         },
         {
@@ -46,7 +46,8 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Plain',
           discount: '12 for 3.99',
-          saving: -0.69
+          saving: 0.69,
+          discountTrigger: 12
         },
         {
           sku: 'BGLE',
@@ -54,7 +55,8 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Everything',
           discount: '6 for 2.49',
-          saving: -0.49
+          saving: 0.45,
+          discountTrigger: 6
         }
       ]
 
@@ -98,7 +100,8 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Everything',
           discount: '6 for 2.49',
-          saving: -0.49
+          saving: 0.45,
+          discountTrigger: 6
         }
       ]
       // execute
@@ -159,7 +162,7 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Onion',
           discount: '6 for 2.49',
-          saving: -0.49,
+          saving: 0.45,
           discountTrigger: 6
         },
         {
@@ -168,7 +171,8 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Plain',
           discount: '12 for 3.99',
-          saving: -0.69
+          saving: 0.69,
+          discountTrigger: 12
         },
         {
           sku: 'BGLE',
@@ -176,7 +180,8 @@ describe('Basket', () => {
           name: 'Bagel',
           variant: 'Everything',
           discount: '6 for 2.49',
-          saving: -0.49
+          saving: 0.45,
+          discountTrigger: 6
         },
         {
           sku: 'BGLS',
@@ -187,8 +192,10 @@ describe('Basket', () => {
         {
           sku: 'COF',
           price: 0.99,
-          name: 'Bagel',
-          variant: ''
+          name: 'Coffee',
+          variant: 'Black',
+          discount: 'Coffee and bagel for .99',
+          saving: 0.39
         },
         {
           sku: 'BGSE',

@@ -5,7 +5,7 @@ const inventory = [
     name: 'Bagel',
     variant: 'Onion',
     discount: '6 for 2.49',
-    saving: -0.49,
+    saving: 0.45,
     discountTrigger: 6
   },
   {
@@ -14,7 +14,7 @@ const inventory = [
     name: 'Bagel',
     variant: 'Plain',
     discount: '12 for 3.99',
-    saving: -0.69
+    saving: 0.69
   },
   {
     sku: 'BGLE',
@@ -22,7 +22,7 @@ const inventory = [
     name: 'Bagel',
     variant: 'Everything',
     discount: '6 for 2.49',
-    saving: -0.49
+    saving: 0.49
   },
   {
     sku: 'BGLS',
@@ -33,8 +33,10 @@ const inventory = [
   {
     sku: 'COF',
     price: 0.99,
-    name: 'Bagel',
-    variant: ''
+    name: 'Coffee',
+    variant: 'Black',
+    discount: 'Coffee and bagel for .99',
+    saving: 0.39
   },
   {
     sku: 'BGSE',

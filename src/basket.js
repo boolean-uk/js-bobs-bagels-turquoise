@@ -41,7 +41,7 @@ class Basket {
     this.basketArray.forEach((item) => {
       totalPrice += item.price
     })
-    // totalPrice = totalPrice - this.discountedPrice()
+    totalPrice = totalPrice - this.discountedPrice()
     return Number(totalPrice.toFixed(2))
   }
 
@@ -56,19 +56,29 @@ class Basket {
     }
     this.count = this.discountedArray.reduce((tally, sku) => {
       tally[sku] = (tally[sku] || 0) + 1
+      console.log('tallys being added up for each item', tally)
+
       return tally
     }, {})
 
     let totalDiscount = 0
     const skus = Object.keys(this.count)
+    console.log('individual skus', skus)
 
     for (let i = 0; i < skus.length; i++) {
       const count = this.count[skus[i]]
+      console.log('count of bagels', count)
+
       const item = this.getItem(skus[i])
+      console.log('current item to discount', item)
+
       if (item.discount) {
         if (count >= item.discountTrigger) {
-          totalDiscount +=
-            item.saving * Math.floor(count / item.discountTrigger)
+          const multipleDiscountCheck = Math.floor(count / item.discountTrigger)
+          console.log('discountaccum', multipleDiscountCheck)
+
+          totalDiscount += item.saving * multipleDiscountCheck
+          console.log('current discount amount to add', totalDiscount)
         }
       }
     }
@@ -92,12 +102,19 @@ basket.addToBasket('BGLO')
 basket.addToBasket('BGLO')
 basket.addToBasket('BGLO')
 basket.addToBasket('BGLO')
-basket.addToBasket('BGLO')
+basket.addToBasket('BGLP')
+basket.addToBasket('BGLP')
+basket.addToBasket('BGLP')
+basket.addToBasket('BGLP')
+basket.addToBasket('BGLP')
+basket.addToBasket('BGLP')
+basket.addToBasket('BGLP')
+basket.addToBasket('BGLP')
+basket.addToBasket('BGLP')
+basket.addToBasket('BGLP')
+basket.addToBasket('BGLP')
+basket.addToBasket('BGLP')
 
-console.log(basket.basketArray.length)
-console.log(basket.discountedArray)
-
-console.log(basket.checkPrice('BGLO'))
-console.log(basket.totalBasketPrice())
+console.log(basket.discountedPrice())
 
 module.exports = Basket

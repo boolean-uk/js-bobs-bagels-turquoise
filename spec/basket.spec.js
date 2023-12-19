@@ -212,7 +212,7 @@ describe('Basket', () => {
 
     it('/ applies special offer pricing to the basket total', () => {
       // set up
-      const expected = 0.45
+      const expected = 6.48
       // execute
       basket.basketSize = 50
       basket.addToBasket('BGLO')
@@ -221,6 +221,19 @@ describe('Basket', () => {
       basket.addToBasket('BGLO')
       basket.addToBasket('BGLO')
       basket.addToBasket('BGLO')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+
       const result = basket.totalBasketPrice()
       // verify
       expect(result).toEqual(expected)

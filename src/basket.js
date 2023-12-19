@@ -96,7 +96,6 @@ basket.addToBasket('BGLE')
 basket.removeItems('BGLP')
 console.log(basket.removeItems('BGLS'))
 
-
 console.log(basket.basketArray)
 
 module.exports = Basket

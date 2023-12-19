@@ -65,56 +65,62 @@ describe('Basket', () => {
       // verify
       expect(result).toEqual(expected)
     })
+
+    it('trys to add more than one item to a basket that is full', () => {
+      // set up
+      const expected = 'WARNING - Basket is full'
+      // execute
+      // basket.this.basketSize = 4
+      basket.addToBasket('BGLO')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLE')
+      basket.addToBasket('COF')
+      const result = basket.addToBasket('BGSE')
+      // verify
+      expect(result).toEqual(expected)
+    })
   })
+  describe('removeItems', () => {
+    it('remove items from basket', () => {
+      // set up
+      const expected = [
+        {
+          sku: 'BGLE',
+          price: 0.49,
+          name: 'Bagel',
+          variant: 'Everything',
+          discount: '6 for 2.49',
+          saving: -0.49
+        },
+        {
+          sku: 'BGLP',
+          price: 0.39,
+          name: 'Bagel',
+          variant: 'Plain',
+          discount: '12 for 3.99',
+          saving: -0.69
+        }
+      ]
+      // execute
+      basket.addToBasket('BGLE')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLO')
+      basket.removeItems('BGLO')
 
-  it('remove items from basket', () => {
-    // set up
-    const expected = [
-      {
-        sku: 'BGLE',
-        price: 0.49,
-        name: 'Bagel',
-        variant: 'Everything',
-        discount: '6 for 2.49',
-        saving: -0.49
-      }
-    ]
-    // execute
-    // basket.this.basketSize = 4
-    basket.addToBasket('BGLO')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLE')
-    basket.removeItems('BGLO')
-    basket.removeItems('BGLP')
-    const result = basket.basketArray
-    // verify
-    expect(result).toEqual(expected)
+      const result = basket.basketArray
+      // verify
+      expect(result).toEqual(expected)
+    })
+
+    it("It can't remove items from basket that doesn't exist", () => {
+      // set up
+      const expected = "That item isn't in your basket"
+      // execute
+      const result = basket.removeItems('sll')
+      // verify
+      expect(result).toEqual(expected)
+    })
   })
-
-  it('trys to add more than one item to a basket that is full', () => {
-    // set up
-    const expected = 'WARNING - Basket is full'
-    // execute
-    // basket.this.basketSize = 4
-    basket.addToBasket('BGLO')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLE')
-    basket.addToBasket('COF')
-    const result = basket.addToBasket('BGSE')
-    // verify
-    expect(result).toEqual(expected)
-  })
-
-  //    it("trys to add an item that doesn't exist", () => {
-  //     // set up
-  //     const expected = ("This item does not exist")
-  //     // execute
-  //     // basket.this.basketSize = 4
-
-  //     const result = basket.addToBasket("BGLL")
-  //     // verify
-  //      expect(result).toEqual(expected);
-  //    })
 
   it('allows a manager to increase basket size if required', () => {
     // set up
@@ -172,17 +178,6 @@ describe('Basket', () => {
     basket.addToBasket('COF')
     basket.addToBasket('BGSE')
     const result = basket.basketArray
-    // verify
-    expect(result).toEqual(expected)
-  })
-
-  it("It can't remove items from basket that doesn't exist", () => {
-    // set up
-    const expected = "That item isn't in your basket"
-    // execute
-    // basket.this.basketSize = 4
-
-    const result = basket.removeItems(99)
     // verify
     expect(result).toEqual(expected)
   })

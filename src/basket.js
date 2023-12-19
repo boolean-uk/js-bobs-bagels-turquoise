@@ -1,5 +1,13 @@
 const menu = require('./inventory.js')
 
+const getItem = (sku) => {
+  for (let i = 0; i < menu.length; i++) {
+    if (menu[i].sku === sku) {
+      return menu[i]
+    }
+  }
+}
+
 class Basket {
   constructor() {
     this.basketArray = []
@@ -7,6 +15,7 @@ class Basket {
     this.priceArray = []
     this.discountedArray = []
     this.totalPriceArray = []
+    this.totalPrice = 0
     this.count = 0
   }
 
@@ -46,7 +55,8 @@ class Basket {
       totalPrice += price
     })
     totalPrice = totalPrice - this.discountedPrice()
-    return Number(totalPrice.toFixed(2))
+    this.totalPrice = Number(totalPrice.toFixed(2))
+    return this.totalPrice
   }
 
   discountedPrice() {
@@ -61,7 +71,7 @@ class Basket {
     const skus = Object.keys(this.count)
     for (let i = 0; i < skus.length; i++) {
       const count = this.count[skus[i]]
-      const item = this.getItem(skus[i])
+      const item = getItem(skus[i])
       if (item.discount) {
         // if skus contains COF & BGLP and there are at least 1x of each of these items
         if (
@@ -88,16 +98,8 @@ class Basket {
     return totalDiscount
   }
 
-  getItem(sku) {
-    for (let i = 0; i < menu.length; i++) {
-      if (menu[i].sku === sku) {
-        return menu[i]
-      }
-    }
-  }
-
   // this discountedPrice function is now returning an object which contains
   // the name of each SKU and the amount of times it occurs
 }
 
-module.exports = Basket
+module.exports = { Basket, getItem }

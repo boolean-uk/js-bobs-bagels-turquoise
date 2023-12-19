@@ -54,6 +54,9 @@ class Basket {
     for (let i = 0; i < this.basketArray.length; i++) {
       this.discountedArray.push(this.basketArray[i].sku)
     }
+
+    console.log('discounted Array', this.discountedArray)
+
     this.count = this.discountedArray.reduce((tally, sku) => {
       tally[sku] = (tally[sku] || 0) + 1
       console.log('tallys being added up for each item', tally)
@@ -95,7 +98,7 @@ class Basket {
 }
 
 const basket = new Basket()
-basket.basketSize = 8
+basket.basketSize = 20
 basket.addToBasket('BGLO')
 basket.addToBasket('BGLO')
 basket.addToBasket('BGLO')

@@ -6,66 +6,65 @@ describe('Basket', () => {
   beforeEach(() => {
     basket = new Basket()
   })
+  describe('add item', () => {
+    it('adds 1 item to basket', () => {
+      // set up
+      const expected = [
+        {
+          sku: 'BGLO',
+          price: 0.49,
+          name: 'Bagel',
+          variant: 'Onion',
+          discount: '6 for 2.49',
+          saving: -0.49,
+          discountTrigger: 6
+        }
+      ]
+      // execute
+      basket.addToBasket('BGLO')
+      const result = basket.basketArray
+      // verify
+      expect(result).toEqual(expected)
+    })
 
-  it('adds 1 item to basket', () => {
-    // set up
-    const expected = [
-      {
-        sku: 'BGLO',
-        price: 0.49,
-        name: 'Bagel',
-        variant: 'Onion',
-        discount: '6 for 2.49',
-        saving: -0.49,
-        discountTrigger: 6
-      }
-    ]
-    // execute
-    // basket.this.basketSize = 4
-    basket.addToBasket('BGLO')
-    const result = basket.basketArray
-    // verify
-    expect(result).toEqual(expected)
-  })
+    it('adds 3 items to basket', () => {
+      // set up
+      const expected = [
+        {
+          sku: 'BGLO',
+          price: 0.49,
+          name: 'Bagel',
+          variant: 'Onion',
+          discount: '6 for 2.49',
+          saving: -0.49,
+          discountTrigger: 6
+        },
+        {
+          sku: 'BGLP',
+          price: 0.39,
+          name: 'Bagel',
+          variant: 'Plain',
+          discount: '12 for 3.99',
+          saving: -0.69
+        },
+        {
+          sku: 'BGLE',
+          price: 0.49,
+          name: 'Bagel',
+          variant: 'Everything',
+          discount: '6 for 2.49',
+          saving: -0.49
+        }
+      ]
 
-  it('adds 3 items to basket', () => {
-    // set up
-    const expected = [
-      {
-        sku: 'BGLO',
-        price: 0.49,
-        name: 'Bagel',
-        variant: 'Onion',
-        discount: '6 for 2.49',
-        saving: -0.49,
-        discountTrigger: 6
-      },
-      {
-        sku: 'BGLP',
-        price: 0.39,
-        name: 'Bagel',
-        variant: 'Plain',
-        discount: '12 for 3.99',
-        saving: -0.69
-      },
-      {
-        sku: 'BGLE',
-        price: 0.49,
-        name: 'Bagel',
-        variant: 'Everything',
-        discount: '6 for 2.49',
-        saving: -0.49
-      }
-    ]
-
-    // execute
-    //    basket.this.basketSize = 4
-    basket.addToBasket('BGLO')
-    basket.addToBasket('BGLP')
-    basket.addToBasket('BGLE')
-    const result = basket.basketArray
-    // verify
-    expect(result).toEqual(expected)
+      // execute
+      basket.addToBasket('BGLO')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLE')
+      const result = basket.basketArray
+      // verify
+      expect(result).toEqual(expected)
+    })
   })
 
   it('remove items from basket', () => {

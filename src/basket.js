@@ -11,9 +11,9 @@ class Basket {
   }
 
   addToBasket(sku) {
-    if (this.basketArray.length >= this.basketSize) {
+    if (this.basketArray.length >= this.basketSize)
       return 'WARNING - Basket is full'
-    } else {
+    else {
       menu.forEach((bagel) => {
         if (bagel.sku === sku) {
           this.basketArray.push(bagel)
@@ -23,7 +23,7 @@ class Basket {
   }
 
   removeItems(sku) {
-    for (var i = 0; i < this.basketArray.length; i++) {
+    for (let i = 0; i < this.basketArray.length; i++) {
       if (this.basketArray[i].sku === sku) {
         this.basketArray.splice(i, 1)
       }
@@ -87,5 +87,16 @@ class Basket {
   // for (let i = 0; i < this.discountedArray.length; i++)
   // if (this.discountedArray[i].sku === ""
 }
+const basket = new Basket()
+
+basket.addToBasket('BGLO')
+basket.addToBasket('BGLP')
+basket.addToBasket('BGLE')
+
+basket.removeItems('BGLP')
+console.log(basket.removeItems('BGLS'))
+
+
+console.log(basket.basketArray)
 
 module.exports = Basket

@@ -136,14 +136,13 @@ describe('Basket', () => {
 
     it('/ returns the price of all items in the basket', () => {
       // set up
-      const expected = 5.84
+      const expected = 4.85
       // execute
-      basket.basketSize = 6
+      basket.basketSize = 5
       basket.addToBasket('BGLO')
       basket.addToBasket('BGLP')
       basket.addToBasket('BGLE')
       basket.addToBasket('BGLS')
-      basket.addToBasket('COF')
       basket.addToBasket('BGSE')
 
       const result = basket.totalBasketPrice()
@@ -194,8 +193,8 @@ describe('Basket', () => {
           price: 0.99,
           name: 'Coffee',
           variant: 'Black',
-          discount: 'Coffee and bagel for .99',
-          saving: 0.39
+          discount: 'Coffee and bagel for 1.25',
+          saving: 0.13
         },
         {
           sku: 'BGSE',
@@ -243,6 +242,26 @@ describe('Basket', () => {
 
       const result = basket.totalBasketPrice()
       // verify
+      expect(result).toEqual(expected)
+    })
+    it('/ applies special offer for coffee and plain bagel matches', () => {
+      const expected = 5.24
+      basket.changeBasketSize(20)
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('BGLP')
+      basket.addToBasket('COF')
+      const result = basket.totalBasketPrice()
       expect(result).toEqual(expected)
     })
   })

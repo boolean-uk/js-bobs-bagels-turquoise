@@ -59,10 +59,9 @@ class Basket {
 
     this.count = this.discountedArray.reduce((tally, sku) => {
       tally[sku] = (tally[sku] || 0) + 1
-      console.log('tallys being added up for each item', tally)
-
       return tally
     }, {})
+    console.log('the total count of items', this.count)
 
     let totalDiscount = 0
     const skus = Object.keys(this.count)
@@ -75,14 +74,25 @@ class Basket {
       const item = this.getItem(skus[i])
       console.log('current item to discount', item)
 
-      if (item.discount) {
-        if (count >= item.discountTrigger) {
-          const multipleDiscountCheck = Math.floor(count / item.discountTrigger)
-          console.log('discountaccum', multipleDiscountCheck)
+      if (!item.discount) {
+        continue
+      }
 
-          totalDiscount += item.saving * multipleDiscountCheck
-          console.log('current discount amount to add', totalDiscount)
+      if (item.name === 'Coffee' && skus.includes('BGLP')) {
+        if (this.count.BGLP % 12 !== 0) {
+          const coffeeDiscount = (this.count.COF % 12) * item.saving
+
+          console.log('Coffee Discount', coffeeDiscount)
+          totalDiscount += coffeeDiscount
         }
+      }
+
+      if (count >= item.discountTrigger) {
+        const multipleDiscountCheck = Math.floor(count / item.discountTrigger)
+        console.log('discountaccum', multipleDiscountCheck)
+
+        totalDiscount += item.saving * multipleDiscountCheck
+        console.log('current discount amount to add', totalDiscount)
       }
     }
     return totalDiscount
@@ -99,25 +109,13 @@ class Basket {
 
 const basket = new Basket()
 basket.basketSize = 20
-basket.addToBasket('BGLO')
-basket.addToBasket('BGLO')
-basket.addToBasket('BGLO')
-basket.addToBasket('BGLO')
-basket.addToBasket('BGLO')
-basket.addToBasket('BGLO')
-basket.addToBasket('BGLP')
-basket.addToBasket('BGLP')
-basket.addToBasket('BGLP')
-basket.addToBasket('BGLP')
-basket.addToBasket('BGLP')
-basket.addToBasket('BGLP')
-basket.addToBasket('BGLP')
-basket.addToBasket('BGLP')
-basket.addToBasket('BGLP')
-basket.addToBasket('BGLP')
-basket.addToBasket('BGLP')
 basket.addToBasket('BGLP')
 
+basket.addToBasket('COF')
+basket.addToBasket('COF')
+basket.addToBasket('COF')
+
 console.log(basket.discountedPrice())
+console.log(basket.totalBasketPrice())
 
 module.exports = Basket

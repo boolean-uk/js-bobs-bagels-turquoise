@@ -38,8 +38,7 @@ const inventory = [
     name: 'Coffee',
     variant: 'Black',
     discount: 'Coffee and bagel for .99',
-    saving: 0.39,
-    discountTrigger: 1
+    saving: 0.39
   },
   {
     sku: 'BGSE',

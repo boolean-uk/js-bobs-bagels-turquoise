@@ -37,7 +37,7 @@ const inventory = [
     price: 0.99,
     name: 'Coffee',
     variant: 'Black',
-    discount: 'Coffee and bagel for .99',
+    discount: 'Coffee and bagel for 1.25',
     saving: 0.39
   },
   {

@@ -22,6 +22,7 @@ class Basket {
 
   increaseBasketCapacity(number) {
     this.basketSize = number
+    return this.basketSize
   }
 
   removeItems(sku) {
@@ -41,7 +42,6 @@ class Basket {
     }
     return this.priceArray
   }
-
 
   discountedPrice() {
     for (let i = 0; i < this.basketArray.length; i++) {
@@ -87,24 +87,5 @@ class Basket {
   // for (let i = 0; i < this.discountedArray.length; i++)
   // if (this.discountedArray[i].sku === ""
 }
-
-const basket = new Basket
-basket.addToBasket('BGLO')  
-basket.addToBasket('BGLO')
-basket.addToBasket('BGLO')
-basket.addToBasket('BGLO')
-basket.addToBasket('BGLO')
-basket.addToBasket('BGLO') 
-
-
-basket.checkPrice('BGLO')
-basket.checkPrice('BGLO')
-basket.checkPrice('BGLO')
-basket.checkPrice('BGLO')
-basket.checkPrice('BGLO')
-basket.checkPrice('BGLO')
-console.log(basket.discountedPrice())
-console.log(basket.checkPrice())
-
 
 module.exports = Basket
